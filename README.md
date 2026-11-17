@@ -1,0 +1,2 @@
+# Animation_Multimedia_Training_Institute
+Automated website repository for Animation_Multimedia_Training_Institute
