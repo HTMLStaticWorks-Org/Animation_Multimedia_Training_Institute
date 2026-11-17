@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placements &amp; Career Support | KROMA Academy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .page-hero {
+      padding-top: calc(var(--header-height) + 4rem);
+      padding-bottom: 4.5rem;
+      position: relative;
+      overflow: hidden;
+      background: #090B14;
+      color: #FFFFFF;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(9,11,20,0.92) 25%, rgba(249,115,22,0.26) 100%);
+    }
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    .role-card {
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .alumni-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .support-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+    }
+    .support-grid > .glass-card {
+      flex: 0 1 calc(25% - 0.87rem);
+    }
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .partner-tile {
+      padding: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+    @media (max-width: 1024px) {
+      .roles-grid { grid-template-columns: repeat(2, 1fr); }
+      .alumni-grid { grid-template-columns: repeat(2, 1fr); }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .support-grid > .glass-card { flex: 0 1 calc(50% - 0.58rem); }
+    }
+    @media (max-width: 1024px) and (min-width: 601px) {
+      .alumni-grid > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 0.75rem);
+        width: 100%;
+        justify-self: center;
+      }
+    }
+    @media (max-width: 600px) {
+      .roles-grid, .alumni-grid, .partners-grid { grid-template-columns: 1fr; }
+      .support-grid > .glass-card { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- SECTION 1: PLACEMENT HERO -->
+    <section class="page-hero">
+      <img src="assets/images/hero-placements.jpg" alt="Post-Production and VFX Career Suite" class="page-hero-bg">
+      <div class="page-hero-overlay"></div>
+      <div class="container" style="position:relative;z-index:2;text-align:center;" data-reveal="up">
+        <span class="eyebrow">Careers &amp; Placement Cell</span>
+        <h1 class="display-xl" style="color:#FFFFFF;max-width:17ch;margin:0 auto 1rem;">
+          From Classroom Reels to <span class="text-gradient">Studio Credits</span>
+        </h1>
+        <p class="lead" style="color:#CBD5E1;margin:0 auto 2rem;">
+          Our dedicated career cell mentors students through showreel curation, mock technical interviews, and studio recruitment showcases.
+        </p>
+        <a href="contact.html" class="btn btn-primary">Connect with Placement Cell</a>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CAREER OPPORTUNITIES -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:660px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">01 / Career Opportunities</span>
+          <h2 class="display-lg">10 High-Demand <span class="text-gradient">Creative Roles</span></h2>
+        </div>
+
+        <div class="roles-grid">
+          <div class="glass-card role-card" data-reveal="scale" data-delay="0"><span class="badge badge-purple">01</span><h3 style="font-size:1rem;margin-top:0.65rem;">2D Animator</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="40"><span class="badge badge-orange">02</span><h3 style="font-size:1rem;margin-top:0.65rem;">3D Artist</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="80"><span class="badge badge-lime">03</span><h3 style="font-size:1rem;margin-top:0.65rem;">VFX Artist</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="120"><span class="badge badge-purple">04</span><h3 style="font-size:1rem;margin-top:0.65rem;">Motion Graphics Designer</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="160"><span class="badge badge-orange">05</span><h3 style="font-size:1rem;margin-top:0.65rem;">Graphic Designer</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="200"><span class="badge badge-lime">06</span><h3 style="font-size:1rem;margin-top:0.65rem;">UI/UX Designer</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="240"><span class="badge badge-purple">07</span><h3 style="font-size:1rem;margin-top:0.65rem;">Video Editor</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="280"><span class="badge badge-orange">08</span><h3 style="font-size:1rem;margin-top:0.65rem;">Game Artist</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="320"><span class="badge badge-lime">09</span><h3 style="font-size:1rem;margin-top:0.65rem;">Character Modeler</h3></div>
+          <div class="glass-card role-card" data-reveal="scale" data-delay="360"><span class="badge badge-purple">10</span><h3 style="font-size:1rem;margin-top:0.65rem;">Multimedia Designer</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: STUDENT SUCCESS STORIES -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="margin-bottom:2.5rem;" data-reveal="up">
+          <span class="eyebrow">02 / Student Success Stories (Demo Profiles)</span>
+          <h2 class="display-lg">Portfolios That <span class="text-gradient">Open Doors</span></h2>
+        </div>
+
+        <div class="alumni-grid">
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="0">
+            <img src="assets/images/placements-3d.jpg" alt="Portfolio Preview - 3D Character" style="width:100%;height:190px;object-fit:cover;">
+            <div style="padding:1.35rem;">
+              <div style="display:flex;align-items:center;gap:0.85rem;margin-bottom:0.85rem;">
+                <img src="assets/images/gallery/img_116.jpg" alt="Nadia Vance" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+                <div>
+                  <h3 style="font-size:1.08rem;">Nadia Vance</h3>
+                  <span style="font-size:0.82rem;color:var(--brand-orange);">3D Animator · Demo Studio A</span>
+                </div>
+              </div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);">"Mock animation tests and timing critiques prepared me for real studio production speed."</p>
+            </div>
+          </article>
+
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="100">
+            <img src="assets/images/placements-vfx.jpg" alt="Portfolio Preview - VFX" style="width:100%;height:190px;object-fit:cover;">
+            <div style="padding:1.35rem;">
+              <div style="display:flex;align-items:center;gap:0.85rem;margin-bottom:0.85rem;">
+                <img src="assets/images/placements-tariq.jpg" alt="Tariq Hasan" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+                <div>
+                  <h3 style="font-size:1.08rem;">Tariq Hasan</h3>
+                  <span style="font-size:0.82rem;color:var(--brand-lime);">VFX Compositor · Demo VFX Lab</span>
+                </div>
+              </div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);">"My breakdown reel showing clean plates and Nuke passes stood out immediately to recruiters."</p>
+            </div>
+          </article>
+
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="200">
+            <img src="assets/images/placements-uiux.jpg" alt="Portfolio Preview - UI/UX" style="width:100%;height:190px;object-fit:cover;">
+            <div style="padding:1.35rem;">
+              <div style="display:flex;align-items:center;gap:0.85rem;margin-bottom:0.85rem;">
+                <img src="assets/images/gallery/img_106.jpg" alt="Chloe Kim" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+                <div>
+                  <h3 style="font-size:1.08rem;">Chloe Kim</h3>
+                  <span style="font-size:0.82rem;color:var(--brand-purple-light);">UI/UX &amp; Motion Designer · Demo Digital</span>
+                </div>
+              </div>
+              <p style="font-size:0.88rem;color:var(--text-secondary);">"Combining Figma design systems with After Effects prototypes gave me a huge edge."</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PLACEMENT SUPPORT -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">03 / Placement Support</span>
+          <h2 class="display-lg">7 Pillars of <span class="text-gradient">Career Readiness</span></h2>
+        </div>
+
+        <div class="support-grid">
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="0"><h3 style="font-size:1.05rem;color:var(--brand-purple-light);">Resume Building</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">Studio-formatted CVs highlighting pipeline tools and credits.</p></div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="50"><h3 style="font-size:1.05rem;color:var(--brand-orange);">Portfolio Preparation</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">60-second showreel pacing, breakdowns &amp; ArtStation/Behance polish.</p></div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="100"><h3 style="font-size:1.05rem;color:var(--brand-lime);">Interview Training</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">Art direction walkthroughs and creative problem-solving drills.</p></div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="150"><h3 style="font-size:1.05rem;color:var(--brand-purple-light);">Mock Interviews</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">Timed technical tests &amp; feedback with visiting studio leads.</p></div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="200"><h3 style="font-size:1.05rem;color:var(--brand-orange);">Industry Connections</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">Portfolio review days, guest lectures &amp; studio networking mixers.</p></div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="250"><h3 style="font-size:1.05rem;color:var(--brand-lime);">Internship Assistance</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">Guidance for junior studio apprenticeships and freelance briefs.</p></div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="300"><h3 style="font-size:1.05rem;color:var(--brand-purple-light);">Career Guidance</h3><p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.4rem;">1-on-1 mentorship on specialization paths &amp; rate negotiation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: HIRING PARTNERS & CTA -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.5rem;" data-reveal="up">
+          <span class="eyebrow">04 / Studio Network (Editable Demo)</span>
+          <h2 class="display-lg">Recruiting <span class="text-gradient">Studios &amp; Agencies</span></h2>
+        </div>
+
+        <div class="partners-grid" data-reveal="up">
+          <div class="glass-card partner-tile">&#9670; PixelForge Demo</div>
+          <div class="glass-card partner-tile">&#9672; NovaVFX Demo</div>
+          <div class="glass-card partner-tile">&#9673; Prism Motion Demo</div>
+          <div class="glass-card partner-tile">&#9674; Vertex Games Demo</div>
+        </div>
+
+        <div class="glass-card" style="padding:2.5rem;text-align:center;" data-reveal="scale">
+          <h2 class="display-md" style="margin-bottom:0.75rem;">Looking to Hire KROMA Graduates or Book a Placement Session?</h2>
+          <p class="lead" style="margin:0 auto 1.5rem;">Our placement coordinators are ready to share curated student reels and schedule interviews.</p>
+          <a href="contact.html" class="btn btn-primary">Contact Placement Team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    window.KromaLayout.bootstrapPublicPage('placements');
+  </script>
+</body>
+</html>

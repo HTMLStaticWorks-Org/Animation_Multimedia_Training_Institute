@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses &amp; Curriculum | KROMA Academy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .page-hero {
+      padding-top: calc(var(--header-height) + 4rem);
+      padding-bottom: 4.5rem;
+      position: relative;
+      overflow: hidden;
+      background: #090B14;
+      color: #FFFFFF;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.42;
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(125deg, rgba(9,11,20,0.92) 25%, rgba(249,115,22,0.28) 100%);
+    }
+    .courses-grid-12 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.35rem;
+    }
+    .course-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.55s var(--transition-smooth);
+    }
+    .course-card:hover img { transform: scale(1.06); }
+    .course-card.featured-wide {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+    .course-card.featured-wide img {
+      width: 46%;
+      height: auto;
+      min-height: 250px;
+    }
+    .curriculum-split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .curr-tab-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .curr-tab-btn.active {
+      border-color: var(--brand-purple-light);
+      background: rgba(124, 58, 237, 0.14);
+      font-weight: 600;
+    }
+    .process-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    .enquiry-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .courses-grid-12 { grid-template-columns: repeat(2, 1fr); }
+      .course-card.featured-wide { grid-column: span 2; }
+      .curriculum-split, .enquiry-grid { grid-template-columns: 1fr; }
+      .process-5 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) and (min-width: 641px) {
+      .process-5 > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 0.5rem);
+        width: 100%;
+        justify-self: center;
+      }
+    }
+    @media (max-width: 640px) {
+      .courses-grid-12, .process-5 { grid-template-columns: 1fr; }
+      .course-card.featured-wide { grid-column: span 1; flex-direction: column; }
+      .course-card.featured-wide img { width: 100%; height: 210px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- SECTION 1: COURSES HERO -->
+    <section class="page-hero">
+      <img src="assets/images/hero-courses.jpg" alt="3D Motion Graphics and Multimedia Courses" class="page-hero-bg">
+      <div class="page-hero-overlay"></div>
+      <div class="container" style="position:relative;z-index:2;text-align:center;" data-reveal="up">
+        <span class="eyebrow">2026 Academic Programs</span>
+        <h1 class="display-xl" style="color:#FFFFFF;max-width:16ch;margin:0 auto 1rem;">
+          Turn Your Creativity Into a <span class="text-gradient">Career</span>
+        </h1>
+        <p class="lead" style="color:#CBD5E1;margin:0 auto 2rem;">
+          Explore 12 specialized diploma and certificate programs crafted with active animation, VFX, gaming, and design studios.
+        </p>
+        <a href="#course-grid" class="btn btn-primary">Explore Programs &darr;</a>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 12 COURSE CATEGORIES -->
+    <section class="section-pad" id="course-grid">
+      <div class="container">
+        <div style="margin-bottom:2.5rem;" data-reveal="up">
+          <span class="eyebrow">01 / Course Categories</span>
+          <h2 class="display-lg">12 Specialized <span class="text-gradient">Creative Tracks</span></h2>
+        </div>
+
+        <div class="courses-grid-12" id="coursesContainer"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COURSE DETAILS & CURRICULUM -->
+    <section class="section-pad section-alt" id="curriculum-section">
+      <div class="container">
+        <div style="margin-bottom:2.25rem;" data-reveal="up">
+          <span class="eyebrow">02 / Course Details &amp; Curriculum</span>
+          <h2 class="display-lg">Inspect Syllabus &amp; <span class="text-gradient">Outcomes</span></h2>
+        </div>
+
+        <div class="curriculum-split">
+          <div style="display:flex;flex-direction:column;gap:0.55rem;" id="currSelector" data-reveal="left"></div>
+          <div class="glass-card" style="padding:1.75rem;" id="currDetailPanel" data-reveal="right"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LEARNING PROCESS -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">03 / Learning Process</span>
+          <h2 class="display-lg">From Beginner to <span class="text-gradient">Studio-Ready</span></h2>
+        </div>
+
+        <div class="process-5">
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="0">
+            <span class="badge badge-purple">Step 01</span>
+            <h3 style="font-size:1.05rem;margin:0.65rem 0 0.35rem;">Beginner to Advanced</h3>
+            <p style="font-size:0.86rem;color:var(--text-secondary);">Structured progression starting from zero prior experience.</p>
+          </div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="70">
+            <span class="badge badge-orange">Step 02</span>
+            <h3 style="font-size:1.05rem;margin:0.65rem 0 0.35rem;">Practical Assignments</h3>
+            <p style="font-size:0.86rem;color:var(--text-secondary);">Weekly studio drills reinforcing rigging, comp, and layout.</p>
+          </div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="140">
+            <span class="badge badge-lime">Step 03</span>
+            <h3 style="font-size:1.05rem;margin:0.65rem 0 0.35rem;">Live Projects</h3>
+            <p style="font-size:0.86rem;color:var(--text-secondary);">Simulated studio sprints with deadlines &amp; multi-artist pipelines.</p>
+          </div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="210">
+            <span class="badge badge-purple">Step 04</span>
+            <h3 style="font-size:1.05rem;margin:0.65rem 0 0.35rem;">Mentor Feedback</h3>
+            <p style="font-size:0.86rem;color:var(--text-secondary);">1-on-1 dailies notes on timing, silhouettes, and shaders.</p>
+          </div>
+          <div class="glass-card" style="padding:1.35rem;" data-reveal="up" data-delay="280">
+            <span class="badge badge-orange">Step 05</span>
+            <h3 style="font-size:1.05rem;margin:0.65rem 0 0.35rem;">Final Portfolio</h3>
+            <p style="font-size:0.86rem;color:var(--text-secondary);">Graduate with a curated showreel &amp; case-study deck.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: COURSE ENQUIRY CTA -->
+    <section class="section-pad section-alt" id="course-enquiry">
+      <div class="container enquiry-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">04 / Admissions Counselling</span>
+          <h2 class="display-lg" style="margin-bottom:1rem;">Unsure Which Track <span class="text-gradient">Fits You Best?</span></h2>
+          <p class="lead" style="margin-bottom:1.25rem;">
+            Send an enquiry to our academic advisors. We will help you choose the right specialization, batch timing, and scholarship options.
+          </p>
+          <p style="font-size:0.9rem;color:var(--text-muted);">Response time: within 24 business hours · Campus &amp; Online batches available.</p>
+        </div>
+
+        <div class="glass-card" style="padding:1.75rem;" data-reveal="right">
+          <form id="courseEnquiryForm" novalidate>
+            <div class="form-group">
+              <label for="enqName" class="form-label">Full Name</label>
+              <input type="text" id="enqName" class="form-control" placeholder="Your full name" required>
+              <span class="form-error" id="enqNameErr"></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
+              <div class="form-group">
+                <label for="enqEmail" class="form-label">Email Address</label>
+                <input type="email" id="enqEmail" class="form-control" placeholder="you@example.com" required>
+                <span class="form-error" id="enqEmailErr"></span>
+              </div>
+              <div class="form-group">
+                <label for="enqPhone" class="form-label">Phone Number</label>
+                <input type="tel" id="enqPhone" class="form-control" placeholder="+1 555 019 4820" required>
+                <span class="form-error" id="enqPhoneErr"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="enqCourse" class="form-label">Interested Course</label>
+              <select id="enqCourse" class="form-control" required></select>
+            </div>
+            <div class="form-group">
+              <label for="enqMsg" class="form-label">Message</label>
+              <textarea id="enqMsg" rows="3" class="form-control" placeholder="Tell us about your creative goals..." required></textarea>
+              <span class="form-error" id="enqMsgErr"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Submit Enquiry</button>
+            <div id="enqToast" class="form-toast" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    window.KromaLayout.bootstrapPublicPage('courses');
+
+    const COURSES = [
+      { id: '2d', title: '2D Animation', img: 'assets/images/courses/course_2d.jpg', duration: '8 Months', level: 'Beginner to Pro', software: 'Toon Boom Harmony, TVPaint, Photoshop', skills: ['12 Principles of Animation', 'Character Acting & Lip Sync', '2D Cut-out Rigging', 'FX & Clean-up'], syllabus: ['Term 1: Drawing for Motion & Timing', 'Term 2: Acting, Dialogue & Facial Expressions', 'Term 3: Short Film Capstone'], desc: 'Master classical and digital 2D animation pipelines used in series television and feature films.' },
+      { id: '3d', title: '3D Animation', img: 'assets/images/courses/course_3d.jpg', duration: '12 Months', level: 'Beginner to Advanced', software: 'Autodesk Maya, Blender, MotionBuilder', skills: ['Body Mechanics & Weight', 'Quadruped & Creature Motion', 'Dialogue & Pantomime Acting', 'Camera Blocking'], syllabus: ['Term 1: Maya Interface & Ball/Pendulum Physics', 'Term 2: Walk Cycles, Parkour & Action', 'Term 3: Feature-Quality Acting Reel'], desc: 'Bring 3D characters to life with believable weight, emotion, and cinematic camera staging.' },
+      { id: 'modeling', title: '3D Modeling & Texturing', img: 'assets/images/courses/course_modeling.jpg', duration: '9 Months', level: 'Beginner to Advanced', software: 'ZBrush, Maya, Substance 3D Painter, Marmoset', skills: ['Hard-Surface Sub-D Modeling', 'Organic Anatomy Sculpting', 'UV Unwrapping & Baking', 'PBR Look Development'], syllabus: ['Term 1: Hard-Surface Props & Weapons', 'Term 2: Digital Anatomy in ZBrush', 'Term 3: Production-Ready Hero Asset'], desc: 'Build clean-topology characters, props, and photorealistic PBR materials for film and games.' },
+      { id: 'vfx', title: 'Visual Effects (VFX)', img: 'assets/images/courses/course_vfx.jpg', duration: '10 Months', level: 'Intermediate', software: 'Nuke, Houdini, After Effects, Mocha Pro', skills: ['Node-Based Compositing', 'Roto, Paint & Clean Plate', '3D Camera Tracking', 'Pyro & Fluid Simulations'], syllabus: ['Term 1: Roto, Keying & Matchmoving', 'Term 2: Houdini FX & Multi-Pass EXR', 'Term 3: Photoreal Live-Action Integration'], desc: 'Composite seamless CG elements into live-action plates using industry-standard node workflows.' },
+      { id: 'motion', title: 'Motion Graphics', img: 'assets/images/courses/course_motion.jpg', duration: '6 Months', level: 'Beginner to Pro', software: 'After Effects, Cinema 4D, Illustrator', skills: ['Kinetic Typography', '3D Broadcast Packages', 'Procedural Mograph', 'Audio-Reactive Visuals'], syllabus: ['Term 1: Keyframes, Graph Editor & Type', 'Term 2: Cinema 4D Mograph & Redshift', 'Term 3: Title Sequence Reel'], desc: 'Design high-impact brand motion, title sequences, and broadcast graphics.' },
+      { id: 'graphic', title: 'Graphic Design', img: 'assets/images/courses/course_graphic.jpg', duration: '6 Months', level: 'Beginner', software: 'Photoshop, Illustrator, InDesign', skills: ['Brand Identity Systems', 'Editorial & Grid Typography', 'Packaging Design', 'Print & Digital Campaigns'], syllabus: ['Term 1: Visual Hierarchy & Color Systems', 'Term 2: Logos, Packaging & Editorial', 'Term 3: Complete Brand Book'], desc: 'Craft memorable brand identities, posters, and editorial layouts with typographic precision.' },
+      { id: 'uiux', title: 'UI/UX Design', img: 'assets/images/courses/course_uiux.jpg', duration: '6 Months', level: 'Beginner to Pro', software: 'Figma, FigJam, Principle, After Effects', skills: ['User Research & Wireframing', 'Design Systems & Tokens', 'Interactive Prototyping', 'Usability Testing'], syllabus: ['Term 1: UX Discovery & Information Architecture', 'Term 2: High-Fidelity UI & Micro-interactions', 'Term 3: End-to-End Product Case Study'], desc: 'Design intuitive web and mobile products backed by user research and scalable design systems.' },
+      { id: 'editing', title: 'Video Editing & Post Production', img: 'assets/images/courses/course_editing.jpg', duration: '5 Months', level: 'Beginner to Intermediate', software: 'Premiere Pro, DaVinci Resolve, Audition', skills: ['Narrative & Commercial Pacing', 'Color Grading & LUTs', 'Sound Mixing & Foley', 'Multi-Cam Workflows'], syllabus: ['Term 1: Rhythm, Cuts & Storytelling', 'Term 2: DaVinci Color Grading & Audio', 'Term 3: Short Documentary & Commercial Cut'], desc: 'Cut compelling stories, grade cinema footage, and master post-production finishing.' },
+      { id: 'game', title: 'Game Design & Development', img: 'assets/images/courses/course_game.jpg', duration: '12 Months', level: 'Beginner to Advanced', software: 'Unreal Engine 5, Blender, Substance, Blueprints', skills: ['Level Design & Worldbuilding', 'Lumen Lighting & Materials', 'Blueprint Gameplay Logic', 'Game Asset Optimization'], syllabus: ['Term 1: Game Mechanics & Greyboxing', 'Term 2: Environment Art & Shaders', 'Term 3: Playable Vertical Slice'], desc: 'Build interactive 3D worlds and playable prototypes inside Unreal Engine 5.' },
+      { id: 'illustration', title: 'Digital Illustration', img: 'assets/images/courses/course_illustration.jpg', duration: '5 Months', level: 'Beginner', software: 'Photoshop, Procreate, Clip Studio Paint', skills: ['Perspective & Composition', 'Light, Shadow & Color', 'Editorial & Book Art', 'Concept Thumbnails'], syllabus: ['Term 1: Form, Value & Perspective', 'Term 2: Mood, Color & Stylization', 'Term 3: Illustration Series'], desc: 'Develop a distinct visual voice across concept art, editorial, and digital painting.' },
+      { id: 'character', title: 'Character Design', img: 'assets/images/courses/course_character.jpg', duration: '6 Months', level: 'Intermediate', software: 'Photoshop, ZBrush, Procreate', skills: ['Silhouette & Shape Language', 'Expression & Turnaround Sheets', 'Costume & Prop Design', 'Stylized Anatomy'], syllabus: ['Term 1: Shape Language & Anatomy', 'Term 2: Expression Sheets & Turnarounds', 'Term 3: Production Character Bible'], desc: 'Create iconic, production-ready characters for animation, comics, and games.' },
+      { id: 'archviz', title: 'Architectural Visualization', img: 'assets/images/courses/course_archviz.jpg', duration: '6 Months', level: 'Intermediate', software: 'Autodesk 3ds Max, V-Ray, Unreal Engine', skills: ['CAD-to-3D Modeling', 'Photoreal Interior Lighting', 'VR Walkthroughs', 'Post-Render Polish'], syllabus: ['Term 1: 3ds Max Architectural Modeling', 'Term 2: V-Ray Materials & Daylight', 'Term 3: Interactive Unreal Walkthrough'], desc: 'Transform architectural blueprints into photorealistic renders and real-time walkthroughs.' }
+    ];
+
+    const grid = document.getElementById('coursesContainer');
+    grid.innerHTML = COURSES.map((c, i) => `
+      <article class="glass-card course-card ${c.wide ? 'featured-wide' : ''}" data-reveal="up" data-delay="${(i % 3) * 70}">
+        <img src="${c.img}" alt="${c.title}">
+        <div style="padding:1.35rem;display:flex;flex-direction:column;gap:0.55rem;flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
+            <span class="badge badge-purple">${c.duration}</span>
+            <span style="font-size:0.78rem;color:var(--text-muted);font-family:var(--font-mono);">${c.level}</span>
+          </div>
+          <h3 style="font-size:1.2rem;">${c.title}</h3>
+          <p style="font-size:0.88rem;color:var(--text-secondary);">${c.desc}</p>
+          <p style="font-size:0.8rem;color:var(--brand-orange);font-family:var(--font-mono);">Tools: ${c.software}</p>
+          <div style="display:flex;gap:0.65rem;margin-top:auto;padding-top:0.65rem;flex-wrap:wrap;">
+            <button type="button" class="btn btn-outline btn-sm" data-select-course="${c.id}">View Details</button>
+            <a href="#course-enquiry" class="btn btn-primary btn-sm" data-enquire-course="${c.title}">Enroll Now</a>
+          </div>
+        </div>
+      </article>
+    `).join('');
+
+    const selector = document.getElementById('currSelector');
+    const detailPanel = document.getElementById('currDetailPanel');
+    const enqSelect = document.getElementById('enqCourse');
+
+    enqSelect.innerHTML = COURSES.map(c => `<option value="${c.title}">${c.title} (${c.duration})</option>`).join('');
+
+    function renderCurriculum(id) {
+      const c = COURSES.find(x => x.id === id) || COURSES[0];
+      selector.innerHTML = COURSES.map(item => `
+        <button type="button" class="curr-tab-btn ${item.id === c.id ? 'active' : ''}" data-curr-id="${item.id}">
+          <span>${item.title}</span>
+          <span style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);">${item.duration}</span>
+        </button>
+      `).join('');
+
+      detailPanel.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem;">
+          <span class="badge badge-orange">${c.duration} · ${c.level}</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--brand-lime);">Certificate &amp; Portfolio Track</span>
+        </div>
+        <h3 style="font-size:1.65rem;margin-bottom:0.6rem;">${c.title}</h3>
+        <p style="color:var(--text-secondary);margin-bottom:1.25rem;">${c.desc}</p>
+        <div style="margin-bottom:1.25rem;">
+          <h4 style="font-size:0.95rem;margin-bottom:0.45rem;color:var(--brand-purple-light);">Software Covered</h4>
+          <p style="font-family:var(--font-mono);font-size:0.88rem;">${c.software}</p>
+        </div>
+        <div style="margin-bottom:1.25rem;">
+          <h4 style="font-size:0.95rem;margin-bottom:0.45rem;color:var(--brand-orange);">Skills You Will Develop</h4>
+          <ul style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;font-size:0.88rem;color:var(--text-secondary);">
+            ${c.skills.map(s => `<li>&#10003; ${s}</li>`).join('')}
+          </ul>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <h4 style="font-size:0.95rem;margin-bottom:0.45rem;color:var(--brand-lime);">Course Syllabus</h4>
+          <ul style="display:grid;gap:0.45rem;font-size:0.88rem;color:var(--text-secondary);">
+            ${c.syllabus.map(s => `<li style="padding:0.55rem 0.85rem;border-radius:var(--radius-sm);background:var(--bg-soft);">${s}</li>`).join('')}
+          </ul>
+        </div>
+        <div style="display:flex;gap:0.85rem;flex-wrap:wrap;">
+          <a href="signup.html" class="btn btn-primary">Enroll Now</a>
+          <a href="#course-enquiry" class="btn btn-outline">Request Syllabus PDF</a>
+        </div>
+      `;
+
+      selector.querySelectorAll('[data-curr-id]').forEach(btn => {
+        btn.addEventListener('click', () => renderCurriculum(btn.getAttribute('data-curr-id')));
+      });
+    }
+    renderCurriculum('3d');
+
+    grid.addEventListener('click', (e) => {
+      const viewBtn = e.target.closest('[data-select-course]');
+      if (viewBtn) {
+        renderCurriculum(viewBtn.getAttribute('data-select-course'));
+        document.getElementById('curriculum-section').scrollIntoView({ behavior: 'smooth' });
+      }
+      const enqBtn = e.target.closest('[data-enquire-course]');
+      if (enqBtn) {
+        enqSelect.value = enqBtn.getAttribute('data-enquire-course');
+      }
+    });
+
+    document.getElementById('courseEnquiryForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('enqName').value.trim();
+      const email = document.getElementById('enqEmail').value.trim();
+      const phone = document.getElementById('enqPhone').value.trim();
+      const msg = document.getElementById('enqMsg').value.trim();
+      const toast = document.getElementById('enqToast');
+      document.querySelectorAll('#courseEnquiryForm .form-error').forEach(el => el.textContent = '');
+      toast.className = 'form-toast';
+
+      let ok = true;
+      if (name.length < 2) { document.getElementById('enqNameErr').textContent = 'Enter your name.'; ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('enqEmailErr').textContent = 'Enter a valid email.'; ok = false; }
+      if (!/^[+\d\s()-]{7,18}$/.test(phone)) { document.getElementById('enqPhoneErr').textContent = 'Enter a valid phone.'; ok = false; }
+      if (msg.length < 8) { document.getElementById('enqMsgErr').textContent = 'Please write a short message.'; ok = false; }
+      if (!ok) return;
+
+      toast.className = 'form-toast success';
+      toast.textContent = `Thank you, ${name}! Your enquiry for ${enqSelect.value} has been recorded (Demo).`;
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

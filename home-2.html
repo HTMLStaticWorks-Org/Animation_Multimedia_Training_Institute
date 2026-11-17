@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home 2 — Studio Showcase | KROMA Academy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .h2-split-hero {
+      padding-top: calc(var(--header-height) + 3.5rem);
+      padding-bottom: 4.5rem;
+      background: var(--bg-primary);
+      background-image: var(--gradient-mesh);
+      overflow: hidden;
+    }
+    .h2-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .h2-art-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-glow);
+    }
+    .h2-art-frame img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+    .horiz-scroll-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .horiz-scroll-track img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+    }
+    .studio-collage {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.15rem;
+      align-items: center;
+    }
+    .studio-collage-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+    .studio-collage-item img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+    .studio-collage-item:hover img { transform: scale(1.07); }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .tool-tile {
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .tool-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: #FFFFFF;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .method-step-btn {
+      width: 100%;
+      text-align: left;
+      padding: 1.1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    }
+    .method-step-btn.active {
+      border-color: var(--brand-orange);
+      background: rgba(249, 115, 22, 0.1);
+      transform: translateX(6px);
+    }
+
+    .projects-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.35rem;
+    }
+    .proj-tile {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+    }
+    .proj-tile img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.5s var(--transition-smooth);
+    }
+    .proj-tile:hover img { transform: scale(1.06); }
+
+    @media (max-width: 1024px) {
+      .h2-hero-grid, .method-grid { grid-template-columns: 1fr; }
+      .horiz-scroll-track, .studio-collage, .projects-gallery, .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .studio-collage-item:nth-child(even) { transform: none; }
+    }
+    @media (max-width: 640px) {
+      .horiz-scroll-track, .studio-collage, .projects-gallery, .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- SECTION 1: SPLIT-SCREEN CREATIVE HERO -->
+    <section class="h2-split-hero">
+      <div class="container h2-hero-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">Studio-First Pedagogy</span>
+          <h1 class="display-xl" style="margin-bottom:1.15rem;">
+            Where <span class="text-gradient">Imagination</span> Meets Production Pipelines
+          </h1>
+          <p class="lead" style="margin-bottom:2rem;">
+            Train inside an industry-calibrated animation &amp; multimedia lab. From concept sculpting to real-time Unreal Engine lighting, build work that studios hire for.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+            <a href="courses.html" class="btn btn-primary">Explore Programs</a>
+            <a href="#student-projects" class="btn btn-outline">View Student Work</a>
+          </div>
+        </div>
+
+        <div data-reveal="right" data-delay="120">
+          <div class="h2-art-frame float-slow">
+            <img src="assets/images/hero-home2.jpg" alt="3D Digital Artist Holographic Workstation">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: FEATURED COURSES (HORIZONTAL SHOWCASE) -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;" data-reveal="up">
+          <div>
+            <span class="eyebrow">01 / Featured Courses</span>
+            <h2 class="display-lg">Signature <span class="text-gradient">Diploma Tracks</span></h2>
+          </div>
+          <a href="courses.html" class="btn btn-outline">Full Curriculum &rarr;</a>
+        </div>
+
+        <div class="horiz-scroll-track">
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="0" data-tilt>
+            <img src="assets/images/h2_diploma/dip_1.jpg" alt="3D Modeling &amp; Texturing in Blender">
+            <div style="padding:1.25rem;">
+              <span class="badge badge-purple">9 Months</span>
+              <h3 style="font-size:1.15rem;margin:0.6rem 0 0.4rem;">3D Modeling &amp; Texturing</h3>
+              <p style="font-size:0.86rem;color:var(--text-secondary);">ZBrush sculpting, hard-surface topology &amp; Substance 3D PBR workflows.</p>
+            </div>
+          </article>
+
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="80" data-tilt>
+            <img src="assets/images/h2_diploma/dip_2.jpg" alt="VFX &amp; Broadcast Compositing Studio">
+            <div style="padding:1.25rem;">
+              <span class="badge badge-orange">10 Months</span>
+              <h3 style="font-size:1.15rem;margin:0.6rem 0 0.4rem;">VFX &amp; Compositing</h3>
+              <p style="font-size:0.86rem;color:var(--text-secondary);">Nuke node trees, camera tracking, keying &amp; CG integration.</p>
+            </div>
+          </article>
+
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="160" data-tilt>
+            <img src="assets/images/h2_diploma/dip_3.jpg" alt="3D Game Environment &amp; Level Art">
+            <div style="padding:1.25rem;">
+              <span class="badge badge-lime">12 Months</span>
+              <h3 style="font-size:1.15rem;margin:0.6rem 0 0.4rem;">Game Art &amp; Unreal 5</h3>
+              <p style="font-size:0.86rem;color:var(--text-secondary);">Real-time shaders, Nanite environments &amp; playable level design.</p>
+            </div>
+          </article>
+
+          <article class="glass-card" style="overflow:hidden;" data-reveal="up" data-delay="240" data-tilt>
+            <img src="assets/images/h2_diploma/dip_4.jpg" alt="3D Cycles Look Dev &amp; Brand Design">
+            <div style="padding:1.25rem;">
+              <span class="badge badge-purple">6 Months</span>
+              <h3 style="font-size:1.15rem;margin:0.6rem 0 0.4rem;">Motion &amp; Brand Design</h3>
+              <p style="font-size:0.86rem;color:var(--text-secondary);">Kinetic identity systems, After Effects &amp; Cinema 4D broadcast reels.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: INSIDE OUR CREATIVE STUDIO -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 3rem;" data-reveal="up">
+          <span class="eyebrow">02 / Inside Our Creative Studio</span>
+          <h2 class="display-lg">Spaces Built for <span class="text-gradient">Deep Creation</span></h2>
+        </div>
+
+        <div class="studio-collage">
+          <div class="studio-collage-item" data-reveal="mask" data-delay="0">
+            <img src="assets/images/gallery/img_085.jpg" alt="Animation Workstation Lab">
+          </div>
+          <div class="studio-collage-item" data-reveal="mask" data-delay="100">
+            <img src="assets/images/gallery/img_086.jpg" alt="Color Grading & Editing Suite">
+          </div>
+          <div class="studio-collage-item" data-reveal="mask" data-delay="200">
+            <img src="assets/images/gallery/img_087.jpg" alt="Collaborative Design Studio">
+          </div>
+          <div class="studio-collage-item" data-reveal="mask" data-delay="300">
+            <img src="assets/images/gallery/img_088.jpg" alt="Multimedia Critique Room">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: INDUSTRY SKILLS & TOOLS -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="text-align:center;max-width:680px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">03 / Industry Skills &amp; Tools</span>
+          <h2 class="display-lg">Master the <span class="text-gradient">Studio Stack</span></h2>
+        </div>
+
+        <div class="tools-grid">
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="0">
+            <div class="tool-badge" style="background:#001E36;border:1px solid #31A8FF;color:#31A8FF;">Ps</div>
+            <div><h3 style="font-size:1.05rem;">Adobe Photoshop</h3><span style="font-size:0.84rem;color:var(--text-muted);">Matte Painting &amp; Concept Art</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="40">
+            <div class="tool-badge" style="background:#330000;border:1px solid #FF9A00;color:#FF9A00;">Ai</div>
+            <div><h3 style="font-size:1.05rem;">Adobe Illustrator</h3><span style="font-size:0.84rem;color:var(--text-muted);">Vector Brand &amp; Character Art</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="80">
+            <div class="tool-badge" style="background:#00005B;border:1px solid #9999FF;color:#9999FF;">Ae</div>
+            <div><h3 style="font-size:1.05rem;">After Effects</h3><span style="font-size:0.84rem;color:var(--text-muted);">Motion Graphics &amp; VFX</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="120">
+            <div class="tool-badge" style="background:#00005B;border:1px solid #EA77FF;color:#EA77FF;">Pr</div>
+            <div><h3 style="font-size:1.05rem;">Premiere Pro</h3><span style="font-size:0.84rem;color:var(--text-muted);">Editorial &amp; Post-Production</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="160">
+            <div class="tool-badge" style="background:#EA7600;">BL</div>
+            <div><h3 style="font-size:1.05rem;">Blender 4.x</h3><span style="font-size:0.84rem;color:var(--text-muted);">Sculpting, Cycles &amp; Grease Pencil</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="200">
+            <div class="tool-badge" style="background:#0696D7;">MA</div>
+            <div><h3 style="font-size:1.05rem;">Autodesk Maya</h3><span style="font-size:0.84rem;color:var(--text-muted);">Character Rigging &amp; Animation</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="240">
+            <div class="tool-badge" style="background:#0C7B93;">3ds</div>
+            <div><h3 style="font-size:1.05rem;">Autodesk 3ds Max</h3><span style="font-size:0.84rem;color:var(--text-muted);">ArchViz &amp; Hard-Surface Modeling</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="280">
+            <div class="tool-badge" style="background:linear-gradient(135deg,#F24E1E,#A259FF);">Fg</div>
+            <div><h3 style="font-size:1.05rem;">Figma</h3><span style="font-size:0.84rem;color:var(--text-muted);">UI/UX Systems &amp; Prototyping</span></div>
+          </div>
+          <div class="glass-card tool-tile" data-reveal="scale" data-delay="320">
+            <div class="tool-badge" style="background:#18181B;border:1px solid #F97316;color:#F97316;">UE</div>
+            <div><h3 style="font-size:1.05rem;">Unreal Engine 5</h3><span style="font-size:0.84rem;color:var(--text-muted);">Real-Time Cinematics &amp; Games</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: OUR TEACHING METHODOLOGY -->
+    <section class="section-pad">
+      <div class="container method-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">04 / Teaching Methodology</span>
+          <h2 class="display-lg" style="margin-bottom:1.5rem;">Practical <span class="text-gradient">Studio Mentorship</span></h2>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;" id="methodSteps">
+            <button type="button" class="method-step-btn active" data-step="0">
+              <strong>01. Hands-On Practical Labs</strong>
+              <p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.25rem;">80% studio execution with guided rigging, lighting, and compositing drills.</p>
+            </button>
+            <button type="button" class="method-step-btn" data-step="1">
+              <strong>02. 1-on-1 Mentor Guidance</strong>
+              <p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.25rem;">Direct frame-by-frame feedback from industry leads every single week.</p>
+            </button>
+            <button type="button" class="method-step-btn" data-step="2">
+              <strong>03. Production Assignments &amp; Workshops</strong>
+              <p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.25rem;">Weekend masterclasses, 48-hour animation jams, and real client briefs.</p>
+            </button>
+            <button type="button" class="method-step-btn" data-step="3">
+              <strong>04. Portfolio &amp; Showreel Building</strong>
+              <p style="font-size:0.86rem;color:var(--text-secondary);margin-top:0.25rem;">Dedicated final term focused purely on polishing your 60-second demo reel.</p>
+            </button>
+          </div>
+        </div>
+
+        <div data-reveal="right">
+          <div class="glass-card" style="padding:1rem;overflow:hidden;">
+            <img src="assets/images/gallery/img_032.jpg" alt="KROMA Studio Workstation Mentorship" style="width:100%;height:390px;object-fit:cover;border-radius:var(--radius-md);">
+            <div style="padding:1rem 0.5rem 0.4rem;">
+              <span class="badge badge-orange" id="methodBadge">Step 01 · Practical Labs</span>
+              <p id="methodSummary" style="margin-top:0.5rem;color:var(--text-secondary);font-size:0.93rem;">
+                Every concept introduced in class is immediately built on dual-monitor Wacom stations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: STUDENT CREATIVE PROJECTS -->
+    <section class="section-pad section-alt" id="student-projects">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">05 / Student Creative Projects</span>
+          <h2 class="display-lg">Portfolio <span class="text-gradient">Highlights</span></h2>
+        </div>
+
+        <div class="projects-gallery">
+          <article class="proj-tile" data-reveal="up" data-delay="0">
+            <img src="assets/images/h2_projects/proj_1.jpg" alt="Blender 3D Lighting &amp; Materials Study">
+            <div style="padding:1.15rem;"><span class="badge badge-purple">3D Render</span><h3 style="font-size:1.05rem;margin-top:0.45rem;">Blender Raytraced Chess Study</h3></div>
+          </article>
+          <article class="proj-tile" data-reveal="up" data-delay="60">
+            <img src="assets/images/h2_projects/proj_8.jpg" alt="Procedural 3D Geometry Motion">
+            <div style="padding:1.15rem;"><span class="badge badge-orange">3D Motion</span><h3 style="font-size:1.05rem;margin-top:0.45rem;">Stereographic Polytope Rig</h3></div>
+          </article>
+          <article class="proj-tile" data-reveal="up" data-delay="120">
+            <img src="assets/images/h2_projects/proj_3.jpg" alt="VFX Supervisor Breakdown Session">
+            <div style="padding:1.15rem;"><span class="badge badge-lime">VFX Dailies</span><h3 style="font-size:1.05rem;margin-top:0.45rem;">Cinema VFX Critique Reel</h3></div>
+          </article>
+          <article class="proj-tile" data-reveal="up" data-delay="180">
+            <img src="assets/images/h2_projects/proj_editorial.jpg" alt="Editorial Typography Poster Design">
+            <div style="padding:1.15rem;"><span class="badge badge-purple">Graphic Design</span><h3 style="font-size:1.05rem;margin-top:0.45rem;">Festival Editorial Poster</h3></div>
+          </article>
+          <article class="proj-tile" data-reveal="up" data-delay="240">
+            <img src="assets/images/gallery/img_046.jpg" alt="Illustration &amp; Packaging Diorama">
+            <div style="padding:1.15rem;"><span class="badge badge-orange">Illustration</span><h3 style="font-size:1.05rem;margin-top:0.45rem;">Gothic Fold-Out Print Set</h3></div>
+          </article>
+          <article class="proj-tile" data-reveal="up" data-delay="300">
+            <img src="assets/images/gallery/img_064.jpg" alt="Game Art Conference Showcase">
+            <div style="padding:1.15rem;"><span class="badge badge-lime">Game Art</span><h3 style="font-size:1.05rem;margin-top:0.45rem;">Indie Game Showcase Demo</h3></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: ENROLLMENT CTA -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="glass-card" data-reveal="scale" style="padding:clamp(2.5rem,5vw,4rem);text-align:center;background:linear-gradient(135deg, rgba(124,58,237,0.18), rgba(249,115,22,0.14));">
+          <span class="eyebrow">06 / Admissions 2026</span>
+          <h2 class="display-lg">Turn Your Sketches Into <span class="text-gradient">Cinema</span></h2>
+          <p class="lead" style="margin:0.65rem auto 1.75rem;">Speak with an academic advisor or submit your application today.</p>
+          <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;">
+            <a href="signup.html" class="btn btn-primary">Apply Now</a>
+            <a href="contact.html" class="btn btn-outline">Talk to an Advisor</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    window.KromaLayout.bootstrapPublicPage('home-2');
+
+    const summaries = [
+      { badge: 'Step 01 · Practical Labs', text: 'Every concept introduced in class is immediately built on dual-monitor Wacom stations.' },
+      { badge: 'Step 02 · Mentor Guidance', text: 'Receive detailed frame-by-frame notes from senior studio leads during weekly dailies.' },
+      { badge: 'Step 03 · Workshops', text: 'Collaborate in 48-hour animation sprints and real-world creative production challenges.' },
+      { badge: 'Step 04 · Portfolio Building', text: 'Graduate with a polished 60-second showreel tailored to top studios and agencies.' }
+    ];
+    document.querySelectorAll('.method-step-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.method-step-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const idx = parseInt(btn.getAttribute('data-step'), 10);
+        document.getElementById('methodBadge').textContent = summaries[idx].badge;
+        document.getElementById('methodSummary').textContent = summaries[idx].text;
+      });
+    });
+  </script>
+</body>
+</html>

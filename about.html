@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | KROMA Academy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .page-hero {
+      padding-top: calc(var(--header-height) + 4rem);
+      padding-bottom: 4.5rem;
+      position: relative;
+      overflow: hidden;
+      background: #090B14;
+      color: #FFFFFF;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.38;
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(9,11,20,0.92) 20%, rgba(124,58,237,0.35) 100%);
+    }
+    .asym-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .env-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.15rem;
+    }
+    .env-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+    }
+    .env-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.55s var(--transition-smooth);
+    }
+    .env-card:hover img { transform: scale(1.06); }
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.35rem;
+    }
+    .faculty-card {
+      overflow: hidden;
+    }
+    .faculty-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1.05;
+      height: auto;
+      object-fit: cover;
+      object-position: center 15%;
+    }
+    .stats-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 1024px) {
+      .asym-grid { grid-template-columns: 1fr; }
+      .env-grid, .faculty-grid, .stats-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .env-grid, .faculty-grid, .stats-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- SECTION 1: ABOUT HERO -->
+    <section class="page-hero">
+      <img src="assets/images/hero-about.jpg" alt="KROMA Animation Studio Classroom" class="page-hero-bg">
+      <div class="page-hero-overlay"></div>
+      <div class="container" style="position:relative;z-index:2;text-align:center;" data-reveal="up">
+        <span class="eyebrow">About KROMA Academy</span>
+        <h1 class="display-xl" style="color:#FFFFFF;max-width:16ch;margin:0 auto 1rem;">
+          Educating Visual <span class="text-gradient">Storytellers</span> Since 2012
+        </h1>
+        <p class="lead" style="color:#CBD5E1;margin-inline:auto;">
+          Founded by studio animators and VFX supervisors, KROMA bridges the gap between creative passion and global production pipelines.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: OUR STORY & VISION -->
+    <section class="section-pad">
+      <div class="container asym-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">01 / Story &amp; Vision</span>
+          <h2 class="display-lg" style="margin-bottom:1.1rem;">Built by Artists, <span class="text-gradient">For Artists</span></h2>
+          <p style="color:var(--text-secondary);margin-bottom:1rem;">
+            KROMA began as a boutique 12-seat workshop dedicated to teaching real production Maya and compositing workflows. Today, our multi-floor creative campus houses motion-capture stages, render farms, and dedicated UI/UX design labs.
+          </p>
+          <p style="color:var(--text-secondary);margin-bottom:1.5rem;">
+            <strong>Our Philosophy:</strong> Technique without storytelling is hollow; storytelling without craft stays unseen. Every student masters both.
+          </p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="glass-card" style="padding:1.15rem;">
+              <h3 style="font-size:1.05rem;color:var(--brand-orange);margin-bottom:0.35rem;">Our Mission</h3>
+              <p style="font-size:0.86rem;color:var(--text-secondary);">Empower creators with studio-grade skills and fearless portfolios.</p>
+            </div>
+            <div class="glass-card" style="padding:1.15rem;">
+              <h3 style="font-size:1.05rem;color:var(--brand-purple-light);margin-bottom:0.35rem;">Our Vision</h3>
+              <p style="font-size:0.86rem;color:var(--text-secondary);">Be the launchpad for the next wave of animation &amp; interactive directors.</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="right">
+          <div class="glass-card" style="padding:0.75rem;">
+            <img src="assets/images/about-story.jpg" alt="KROMA Motion Capture Studio Stage" style="width:100%;height:420px;object-fit:cover;border-radius:var(--radius-md);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: OUR LEARNING ENVIRONMENT -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">02 / Learning Environment</span>
+          <h2 class="display-lg">Labs, Suites &amp; <span class="text-gradient">Studios</span></h2>
+        </div>
+
+        <div class="env-grid">
+          <article class="env-card" data-reveal="up" data-delay="0">
+            <img src="assets/images/gallery/img_091.jpg" alt="3D Render & Animation Lab">
+            <div style="padding:1.1rem;"><h3 style="font-size:1.05rem;">3D Animation Lab</h3><p style="font-size:0.84rem;color:var(--text-muted);">Dual-GPU workstations &amp; Cintiq displays.</p></div>
+          </article>
+          <article class="env-card" data-reveal="up" data-delay="80">
+            <img src="assets/images/gallery/img_092.jpg" alt="VFX & Editing Suite">
+            <div style="padding:1.1rem;"><h3 style="font-size:1.05rem;">Editing &amp; Color Suite</h3><p style="font-size:0.84rem;color:var(--text-muted);">Calibrated 4K reference monitors.</p></div>
+          </article>
+          <article class="env-card" data-reveal="up" data-delay="160">
+            <img src="assets/images/gallery/img_093.jpg" alt="UI UX Collaboration Studio">
+            <div style="padding:1.1rem;"><h3 style="font-size:1.05rem;">Design Thinking Studio</h3><p style="font-size:0.84rem;color:var(--text-muted);">Open sprint tables for UI/UX &amp; branding.</p></div>
+          </article>
+          <article class="env-card" data-reveal="up" data-delay="240">
+            <img src="assets/images/gallery/img_094.jpg" alt="Screening & Critique Hall">
+            <div style="padding:1.1rem;"><h3 style="font-size:1.05rem;">Dailies Screening Room</h3><p style="font-size:0.84rem;color:var(--text-muted);">Weekly student reel critiques on cinema projection.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FACULTY & MENTORS -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">03 / Faculty &amp; Mentors</span>
+          <h2 class="display-lg">Learn From <span class="text-gradient">Industry Leads</span></h2>
+        </div>
+
+        <div class="faculty-grid">
+          <article class="glass-card faculty-card" data-reveal="scale" data-delay="0">
+            <img src="assets/images/faculty/fac_1.jpg" alt="David Vance">
+            <div style="padding:1.2rem;">
+              <h3 style="font-size:1.1rem;">David Vance</h3>
+              <span style="font-size:0.82rem;color:var(--brand-orange);font-weight:600;">Head of 3D Animation</span>
+              <p style="font-size:0.84rem;color:var(--text-secondary);margin-top:0.45rem;">12+ years in feature character animation &amp; Maya rigging.</p>
+            </div>
+          </article>
+          <article class="glass-card faculty-card" data-reveal="scale" data-delay="80">
+            <img src="assets/images/faculty/fac_2.jpg" alt="Miguel Thorne">
+            <div style="padding:1.2rem;">
+              <h3 style="font-size:1.1rem;">Miguel Thorne</h3>
+              <span style="font-size:0.82rem;color:var(--brand-purple-light);font-weight:600;">Lead VFX Supervisor</span>
+              <p style="font-size:0.84rem;color:var(--text-secondary);margin-top:0.45rem;">Specialist in Nuke compositing &amp; Houdini simulations.</p>
+            </div>
+          </article>
+          <article class="glass-card faculty-card" data-reveal="scale" data-delay="160">
+            <img src="assets/images/faculty/fac_3.jpg" alt="Sami Takahashi">
+            <div style="padding:1.2rem;">
+              <h3 style="font-size:1.1rem;">Sami Takahashi</h3>
+              <span style="font-size:0.82rem;color:var(--brand-orange);font-weight:600;">Motion Design Director</span>
+              <p style="font-size:0.84rem;color:var(--text-secondary);margin-top:0.45rem;">Broadcast title designer &amp; Cinema 4D / After Effects mentor.</p>
+            </div>
+          </article>
+          <article class="glass-card faculty-card" data-reveal="scale" data-delay="240">
+            <img src="assets/images/faculty/fac_4.jpg" alt="Kenji Meyer">
+            <div style="padding:1.2rem;">
+              <h3 style="font-size:1.1rem;">Kenji Meyer</h3>
+              <span style="font-size:0.82rem;color:var(--brand-purple-light);font-weight:600;">Game Art &amp; Unreal Lead</span>
+              <p style="font-size:0.84rem;color:var(--text-secondary);margin-top:0.45rem;">Real-time environment artist &amp; Unreal Engine 5 instructor.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ACHIEVEMENTS & CTA -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div class="stats-4">
+          <div class="glass-card" style="padding:1.5rem;text-align:center;" data-reveal="up" data-delay="0">
+            <div class="display-md text-gradient" data-counter="14" data-suffix="+">0</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.3rem;">Years of Experience</div>
+          </div>
+          <div class="glass-card" style="padding:1.5rem;text-align:center;" data-reveal="up" data-delay="80">
+            <div class="display-md text-gradient" data-counter="3200" data-suffix="+">0</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.3rem;">Students Trained (Demo)</div>
+          </div>
+          <div class="glass-card" style="padding:1.5rem;text-align:center;" data-reveal="up" data-delay="160">
+            <div class="display-md text-gradient" data-counter="180" data-suffix="+">0</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.3rem;">Student Film Selections</div>
+          </div>
+          <div class="glass-card" style="padding:1.5rem;text-align:center;" data-reveal="up" data-delay="240">
+            <div class="display-md text-gradient" data-counter="45" data-suffix="+">0</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.3rem;">Industry Mentors</div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding:2.5rem;text-align:center;" data-reveal="scale">
+          <h2 class="display-md" style="margin-bottom:0.75rem;">Visit KROMA &amp; Meet Our Faculty</h2>
+          <p class="lead" style="margin:0 auto 1.5rem;">Experience a live animation critique session or book a personal campus tour.</p>
+          <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+            <a href="signup.html" class="btn btn-primary">Apply for 2026 Batch</a>
+            <a href="contact.html" class="btn btn-outline">Schedule Campus Visit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    window.KromaLayout.bootstrapPublicPage('about');
+  </script>
+</body>
+</html>

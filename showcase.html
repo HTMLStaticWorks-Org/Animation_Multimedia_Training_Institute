@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Showcase &amp; Events | KROMA Academy</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .page-hero {
+      padding-top: calc(var(--header-height) + 4rem);
+      padding-bottom: 4.5rem;
+      position: relative;
+      overflow: hidden;
+      background: #090B14;
+      color: #FFFFFF;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.38;
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(125deg, rgba(9,11,20,0.92) 25%, rgba(124,58,237,0.34) 100%);
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+    .filter-pill {
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-soft);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .filter-pill.active, .filter-pill:hover {
+      background: var(--gradient-brand);
+      color: #FFFFFF;
+      border-color: transparent;
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.35rem;
+    }
+    .showcase-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .showcase-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.55s var(--transition-smooth);
+    }
+    .showcase-card:hover img { transform: scale(1.06); }
+    .spotlight-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.35rem;
+    }
+    .event-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+    }
+    @media (max-width: 1024px) {
+      .showcase-grid, .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .spotlight-split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) and (min-width: 641px) {
+      .events-grid > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 0.675rem);
+        width: 100%;
+        justify-self: center;
+      }
+    }
+    @media (max-width: 640px) {
+      .showcase-grid, .events-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- SECTION 1: SHOWCASE HERO -->
+    <section class="page-hero">
+      <img src="assets/images/gallery/img_073.jpg" alt="KROMA Student Film Production Showcase" class="page-hero-bg">
+      <div class="page-hero-overlay"></div>
+      <div class="container" style="position:relative;z-index:2;text-align:center;" data-reveal="up">
+        <span class="eyebrow">Student Showcase &amp; Events</span>
+        <h1 class="display-xl" style="color:#FFFFFF;max-width:17ch;margin:0 auto 1rem;">
+          Original Works &amp; <span class="text-gradient">Studio Jams</span>
+        </h1>
+        <p class="lead" style="color:#CBD5E1;margin:0 auto 2rem;">
+          Explore curated graduation thesis films, 3D character turntables, VFX breakdowns, and upcoming live campus workshops.
+        </p>
+        <a href="#work-gallery" class="btn btn-primary">Explore Student Work &darr;</a>
+      </div>
+    </section>
+
+    <!-- SECTION 2: FILTERABLE STUDENT WORK GALLERY -->
+    <section class="section-pad" id="work-gallery">
+      <div class="container">
+        <div style="margin-bottom:1.75rem;" data-reveal="up">
+          <span class="eyebrow">01 / Curated Portfolio Archive</span>
+          <h2 class="display-lg">Filter by <span class="text-gradient">Discipline</span></h2>
+        </div>
+
+        <div class="filter-bar" id="showcaseFilters" data-reveal="up">
+          <button type="button" class="filter-pill active" data-filter="all">All Projects</button>
+          <button type="button" class="filter-pill" data-filter="3d">3D &amp; Characters</button>
+          <button type="button" class="filter-pill" data-filter="vfx">VFX &amp; Motion</button>
+          <button type="button" class="filter-pill" data-filter="game">Game Art</button>
+          <button type="button" class="filter-pill" data-filter="uiux">UI/UX &amp; Brand</button>
+        </div>
+
+        <div class="showcase-grid" id="showcaseGrid"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED THESIS FILM SPOTLIGHT -->
+    <section class="section-pad section-alt">
+      <div class="container spotlight-split">
+        <div data-reveal="left">
+          <div class="glass-card" style="padding:0.75rem;overflow:hidden;">
+            <img src="assets/images/gallery/img_074.jpg" alt="Featured Thesis Short Film" style="width:100%;height:380px;object-fit:cover;border-radius:var(--radius-md);">
+          </div>
+        </div>
+
+        <div data-reveal="right">
+          <span class="eyebrow">02 / Thesis Film Spotlight</span>
+          <h2 class="display-lg" style="margin-bottom:1rem;">&ldquo;Echoes of Nebula&rdquo; <span class="text-gradient">Short Film</span></h2>
+          <p class="lead" style="margin-bottom:1.25rem;">
+            Produced by a 5-student graduating team over 14 weeks using Maya, Houdini pyro simulations, Nuke compositing, and Unreal Engine 5.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin-bottom:1.75rem;">
+            <div class="glass-card" style="padding:1rem;text-align:center;">
+              <div class="display-md text-gradient" data-counter="42" data-suffix="">0</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">VFX Shots</div>
+            </div>
+            <div class="glass-card" style="padding:1rem;text-align:center;">
+              <div class="display-md text-gradient" data-counter="14" data-suffix=" Wks">0</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Production</div>
+            </div>
+            <div class="glass-card" style="padding:1rem;text-align:center;">
+              <div class="display-md text-gradient" data-counter="4" data-suffix="K">0</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">60 FPS Master</div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" data-showreel-trigger data-title="Echoes of Nebula — Thesis Breakdown" data-img="assets/images/gallery/img_074.jpg" data-desc="Full CG &amp; VFX thesis breakdown featuring Maya character rigs, Houdini volumetric dust, and Nuke deep compositing.">
+            &#9654; Watch Breakdown
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: UPCOMING WORKSHOPS & CREATIVE JAMS -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:650px;margin:0 auto 2.75rem;" data-reveal="up">
+          <span class="eyebrow">03 / Live Workshops &amp; Jams</span>
+          <h2 class="display-lg">Join Our Next <span class="text-gradient">Studio Event</span></h2>
+        </div>
+
+        <div class="events-grid">
+          <article class="glass-card event-card" data-reveal="up" data-delay="0">
+            <img src="assets/images/gallery/img_075.jpg" alt="48-Hour Animation Jam">
+            <div style="padding:1.35rem;display:flex;flex-direction:column;gap:0.55rem;flex:1;">
+              <span class="badge badge-purple" style="align-self:flex-start;">Nov 29 · Campus Lab A</span>
+              <h3 style="font-size:1.15rem;">48-Hour Animation Jam</h3>
+              <p style="font-size:0.88rem;color:var(--text-secondary);">Team up with riggers and sound designers to animate a 15-second short in one weekend.</p>
+              <button type="button" class="btn btn-outline btn-sm" style="margin-top:auto;" data-rsvp="48-Hour Animation Jam">Reserve Seat</button>
+            </div>
+          </article>
+
+          <article class="glass-card event-card" data-reveal="up" data-delay="90">
+            <img src="assets/images/gallery/img_076.jpg" alt="Unreal Engine 5 Lighting Lab">
+            <div style="padding:1.35rem;display:flex;flex-direction:column;gap:0.55rem;flex:1;">
+              <span class="badge badge-orange" style="align-self:flex-start;">Dec 06 · Cinema Hall</span>
+              <h3 style="font-size:1.15rem;">Unreal Engine 5 Lighting Lab</h3>
+              <p style="font-size:0.88rem;color:var(--text-secondary);">Hands-on Lumen &amp; Nanite cinematic lighting workshop led by Lucas Meyer.</p>
+              <button type="button" class="btn btn-outline btn-sm" style="margin-top:auto;" data-rsvp="Unreal Engine 5 Lighting Lab">Reserve Seat</button>
+            </div>
+          </article>
+
+          <article class="glass-card event-card" data-reveal="up" data-delay="180">
+            <img src="assets/images/gallery/img_077.jpg" alt="Nuke VFX Compositing Clinic">
+            <div style="padding:1.35rem;display:flex;flex-direction:column;gap:0.55rem;flex:1;">
+              <span class="badge badge-purple" style="align-self:flex-start;">Dec 13 · Nuke Suite 2</span>
+              <h3 style="font-size:1.15rem;">Nuke Compositing Clinic</h3>
+              <p style="font-size:0.88rem;color:var(--text-secondary);">Live multi-pass EXR compositing and green-screen integration clinic with Marcus Thorne.</p>
+              <button type="button" class="btn btn-outline btn-sm" style="margin-top:auto;" data-rsvp="Nuke Compositing Clinic">Reserve Seat</button>
+            </div>
+          </article>
+        </div>
+
+        <div id="rsvpToast" class="form-toast" role="status" style="max-width:560px;margin:1.5rem auto 0;text-align:center;"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: EXHIBITION & ADMISSIONS CTA -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div class="glass-card" data-reveal="scale" style="padding:clamp(2.25rem,5vw,3.75rem);text-align:center;background:linear-gradient(135deg, rgba(124,58,237,0.16), rgba(249,115,22,0.14));">
+          <span class="eyebrow">04 / Annual Open House</span>
+          <h2 class="display-lg" style="margin-bottom:0.85rem;">Want Your Work on Our <span class="text-gradient">Next Reel?</span></h2>
+          <p class="lead" style="margin:0 auto 1.75rem;">Apply for the upcoming 2026 intake or book a campus tour during our Friday student critique sessions.</p>
+          <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+            <a href="signup.html" class="btn btn-primary">Apply Now</a>
+            <a href="courses.html" class="btn btn-outline">Explore Courses</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    window.KromaLayout.bootstrapPublicPage('showcase');
+
+    const WORKS = [
+      { title: 'Obsidian Mech Turntable', cat: '3d', tag: '3D & Characters', img: 'assets/images/gallery/img_043.jpg', desc: 'Hard-surface Sub-D modeling & Substance PBR shaders.' },
+      { title: 'Kinetic Broadcast Package', cat: 'vfx', tag: 'VFX & Motion', img: 'assets/images/gallery/img_044.jpg', desc: 'Cinema 4D & After Effects title sequence.' },
+      { title: 'Neon Citadel Level Art', cat: 'game', tag: 'Game Art', img: 'assets/images/gallery/img_062.jpg', desc: 'Real-time Unreal Engine 5 environment lighting.' },
+      { title: 'Cyber Runner Prototype', cat: 'game', tag: 'Game Art', img: 'assets/images/gallery/img_063.jpg', desc: 'Playable character controller & stylized shaders.' },
+      { title: 'Spatial Audio Interface', cat: 'uiux', tag: 'UI/UX & Brand', img: 'assets/images/gallery/img_098.jpg', desc: 'Interactive Figma design system & motion prototype.' },
+      { title: 'Festival Identity System', cat: 'uiux', tag: 'UI/UX & Brand', img: 'assets/images/gallery/img_099.jpg', desc: 'Editorial typography, posters & digital campaign.' }
+    ];
+
+    const grid = document.getElementById('showcaseGrid');
+    function renderWorks(filter) {
+      const list = filter === 'all' ? WORKS : WORKS.filter(w => w.cat === filter);
+      grid.innerHTML = list.map((w, i) => `
+        <article class="glass-card showcase-card" data-reveal="up" data-delay="${(i % 3) * 70}" data-showreel-trigger data-title="${w.title}" data-img="${w.img}" data-desc="${w.desc}" style="cursor:pointer;">
+          <img src="${w.img}" alt="${w.title}">
+          <div style="padding:1.25rem;display:flex;flex-direction:column;gap:0.45rem;">
+            <span class="badge ${i % 2 === 0 ? 'badge-purple' : 'badge-orange'}" style="align-self:flex-start;">${w.tag}</span>
+            <h3 style="font-size:1.15rem;">${w.title}</h3>
+            <p style="font-size:0.86rem;color:var(--text-secondary);">${w.desc}</p>
+          </div>
+        </article>
+      `).join('');
+    }
+    renderWorks('all');
+
+    document.querySelectorAll('#showcaseFilters .filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#showcaseFilters .filter-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderWorks(btn.getAttribute('data-filter'));
+      });
+    });
+
+    document.querySelectorAll('[data-rsvp]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const toast = document.getElementById('rsvpToast');
+        toast.className = 'form-toast success';
+        toast.textContent = `Demo RSVP confirmed for "${btn.getAttribute('data-rsvp')}". We look forward to seeing you at KROMA!`;
+      });
+    });
+  </script>
+</body>
+</html>

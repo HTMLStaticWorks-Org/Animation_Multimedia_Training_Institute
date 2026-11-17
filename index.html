@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KROMA Academy | Animation &amp; Multimedia Training Institute</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Home 1 Specific Editorial & Bento Styles */
+    .h1-hero {
+      min-height: 100svh;
+      padding-top: calc(var(--header-height) + 3rem);
+      padding-bottom: 4.5rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: #090B14;
+      color: #F8FAFC;
+    }
+    .h1-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.48;
+      transform: scale(1.04);
+    }
+    .h1-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 25% 40%, rgba(124, 58, 237, 0.28), transparent 55%),
+                  linear-gradient(180deg, rgba(9, 11, 20, 0.55) 0%, rgba(9, 11, 20, 0.92) 100%);
+    }
+    .h1-hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .floating-chip {
+      position: absolute;
+      padding: 0.65rem 1.1rem;
+      border-radius: var(--radius-full);
+      background: rgba(21, 25, 45, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(12px);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #F8FAFC;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      z-index: 3;
+    }
+    .showreel-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .showreel-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+    .showreel-card:hover img { transform: scale(1.06); }
+    .play-ring {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: var(--gradient-brand);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 12px rgba(124, 58, 237, 0.25);
+      transition: transform 0.3s ease;
+    }
+    .showreel-card:hover .play-ring { transform: scale(1.1); }
+
+    /* Section 2: Uniform 4-Column Programs Grid */
+    .programs-bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .prog-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 290px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.45rem;
+      background: #0F1221;
+    }
+    .prog-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+    .prog-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 11, 20, 0.08) 0%, rgba(9, 11, 20, 0.88) 100%);
+    }
+    .prog-card:hover img { transform: scale(1.08); }
+    .prog-card-content { position: relative; z-index: 2; color: #FFFFFF; }
+
+    /* Section 3: Uniform Showreel Grid */
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .reel-tile {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      height: 280px;
+      border: 1px solid var(--border-subtle);
+    }
+    .reel-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s var(--transition-smooth);
+    }
+    .reel-tile:hover img { transform: scale(1.07); }
+    .reel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 35%, rgba(9, 11, 20, 0.9) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.25rem;
+      color: #FFFFFF;
+    }
+
+    /* Section 4: Split Editorial */
+    .split-editorial {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .stat-pill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* Section 5: Horizontal Learning Timeline */
+    .timeline-track {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.15rem;
+      position: relative;
+    }
+    .timeline-step {
+      padding: 1.5rem 1.25rem;
+      position: relative;
+    }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand-lime);
+      margin-bottom: 0.65rem;
+      display: inline-block;
+    }
+
+    /* Section 6: Success Stories */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .h1-hero-grid, .split-editorial { grid-template-columns: 1fr; }
+      .programs-bento, .timeline-track, .masonry-grid, .stories-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) and (min-width: 641px) {
+      .stories-grid > :last-child:nth-child(odd),
+      .timeline-track > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 0.75rem);
+        width: 100%;
+        justify-self: center;
+      }
+    }
+    @media (max-width: 640px) {
+      .programs-bento, .timeline-track, .masonry-grid, .stories-grid, .stat-pill-grid { grid-template-columns: 1fr; }
+      .prog-card, .reel-tile { height: 250px; }
+      .floating-chip { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <!-- SECTION 1: CINEMATIC CREATIVE HERO -->
+    <section class="h1-hero" aria-label="Hero">
+      <img src="assets/images/hero-home1.jpg" alt="KROMA 3D Animation and Motion Graphics" class="h1-hero-bg">
+      <div class="h1-hero-overlay"></div>
+
+      <div class="container h1-hero-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">Animation &amp; Multimedia Institute</span>
+          <h1 class="display-xl" style="color:#FFFFFF;margin-bottom:1.25rem;">
+            Sculpt Worlds. <span class="text-gradient">Animate</span> the Future.
+          </h1>
+          <p class="lead" style="color:#CBD5E1;margin-bottom:2rem;">
+            Master 3D animation, film VFX, motion graphics, and interactive digital design inside a production-grade creative academy built for studio careers.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+            <a href="courses.html" class="btn btn-primary">Explore Courses</a>
+            <button type="button" class="btn btn-outline" style="background:rgba(15,18,33,0.72);color:#FFFFFF;border-color:rgba(255,255,255,0.42);" data-showreel-trigger data-title="KROMA 2026 Student Showreel" data-img="assets/images/showreel-hero.jpg" data-desc="A 4K compilation of 3D character acting, Houdini simulations, and Nuke VFX compositing by our graduating cohorts.">
+              &#9654; Watch Showreel
+            </button>
+          </div>
+        </div>
+
+        <div style="position:relative;" data-reveal="scale" data-delay="150">
+          <div class="floating-chip float-slow" style="top:-18px;left:-18px;">Maya · Blender · Nuke</div>
+          <div class="floating-chip float-delayed" style="bottom:-16px;right:-10px;border-color:rgba(249,115,22,0.55);color:#F97316;">2026 Admissions Open</div>
+          <div class="showreel-card" data-showreel-trigger data-title="2026 Academy Showreel Preview" data-img="assets/images/showreel-hero.jpg" data-desc="Watch how KROMA students take concepts from storyboard to final Octane &amp; Unreal Engine renders.">
+            <img src="assets/images/showreel-hero.jpg" alt="Showreel video preview">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(9,11,20,0.35);">
+              <span class="play-ring" aria-label="Play Showreel">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              </span>
+              <span style="margin-top:0.85rem;font-family:var(--font-mono);font-size:0.82rem;color:#fff;letter-spacing:0.08em;">PLAY SHOWREEL (02:14)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CREATIVE PROGRAMS -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.25rem;margin-bottom:2.75rem;" data-reveal="up">
+          <div>
+            <span class="eyebrow">01 / Creative Programs</span>
+            <h2 class="display-lg">Eight Disciplines. <span class="text-gradient">One Studio Roof.</span></h2>
+          </div>
+          <a href="courses.html" class="btn btn-outline">View All 12 Courses &rarr;</a>
+        </div>
+
+        <div class="programs-bento">
+          <a href="courses.html" class="prog-card" data-reveal="up" data-tilt>
+            <img src="assets/images/prog-3d-anim.jpg" alt="3D Animation">
+            <div class="prog-card-content">
+              <span class="badge badge-purple" style="margin-bottom:0.45rem;">12 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">3D Animation</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Character acting, rigging &amp; Maya/Blender motion.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="60" data-tilt>
+            <img src="assets/images/prog-vfx.jpg" alt="Visual Effects VFX">
+            <div class="prog-card-content">
+              <span class="badge badge-orange" style="margin-bottom:0.45rem;">10 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">Visual Effects (VFX)</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Node compositing, pyro FX &amp; matchmoving.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="120" data-tilt>
+            <img src="assets/images/prog-2d-anim.jpg" alt="2D Animation">
+            <div class="prog-card-content">
+              <span class="badge badge-lime" style="margin-bottom:0.45rem;">8 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">2D Animation</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Frame-by-frame motion &amp; Toon Boom rigs.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="180" data-tilt>
+            <img src="assets/images/prog-motion.jpg" alt="Motion Graphics">
+            <div class="prog-card-content">
+              <span class="badge badge-purple" style="margin-bottom:0.45rem;">6 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">Motion Graphics</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Broadcast titles, kinetic type &amp; Cinema 4D.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="220" data-tilt>
+            <img src="assets/images/prog-graphic.jpg" alt="Graphic Design">
+            <div class="prog-card-content">
+              <span class="badge badge-orange" style="margin-bottom:0.45rem;">6 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">Graphic Design</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Visual identity, typography &amp; brand systems.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="260" data-tilt>
+            <img src="assets/images/prog-uiux.jpg" alt="UI UX Design">
+            <div class="prog-card-content">
+              <span class="badge badge-lime" style="margin-bottom:0.45rem;">6 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">UI/UX Design</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Interactive prototypes &amp; design systems in Figma.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="300" data-tilt>
+            <img src="assets/images/prog-editing.jpg" alt="Video Editing">
+            <div class="prog-card-content">
+              <span class="badge badge-purple" style="margin-bottom:0.45rem;">5 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">Video Editing</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Narrative pacing, sound design &amp; color grading.</p>
+            </div>
+          </a>
+
+          <a href="courses.html" class="prog-card" data-reveal="up" data-delay="340" data-tilt>
+            <img src="assets/images/prog-game.jpg" alt="Game Design">
+            <div class="prog-card-content">
+              <span class="badge badge-orange" style="margin-bottom:0.45rem;">12 Months</span>
+              <h3 style="font-size:1.2rem;color:#fff;">Game Design</h3>
+              <p style="font-size:0.84rem;color:#CBD5E1;margin-top:0.25rem;">Real-time environments &amp; Unreal Engine 5.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: STUDENT SHOWREEL SHOWCASE -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="text-align:center;max-width:680px;margin:0 auto 3rem;" data-reveal="up">
+          <span class="eyebrow">02 / Student Showreel Showcase</span>
+          <h2 class="display-lg">Frames Crafted by <span class="text-gradient">Our Learners</span></h2>
+          <p class="lead" style="margin:0.75rem auto 0;">Click any project frame to launch an interactive studio preview.</p>
+        </div>
+
+        <div class="masonry-grid">
+          <article class="reel-tile" data-reveal="mask" data-showreel-trigger data-title="Cyborg Arm Integration" data-img="assets/images/reels/reel_1.jpg" data-desc="Live-action plate tracking and CG mechanical arm compositing in Nuke &amp; Blender.">
+            <img src="assets/images/reels/reel_1.jpg" alt="VFX Cyborg Arm Compositing Reel">
+            <div class="reel-overlay">
+              <span class="badge badge-purple" style="align-self:flex-start;">VFX Comp</span>
+              <div>
+                <h3 style="font-size:1.15rem;color:#fff;">Cyborg Arm Integration</h3>
+                <span style="font-size:0.82rem;color:#CBD5E1;">&#9654; Play Preview</span>
+              </div>
+            </div>
+          </article>
+          <article class="reel-tile" data-reveal="up" data-delay="60" data-showreel-trigger data-title="Gran Dillama 3D Short" data-img="assets/images/reels/reel_2.jpg" data-desc="Stylized 3D character acting and cartoon squash-and-stretch animation.">
+            <img src="assets/images/reels/reel_2.jpg" alt="3D Cartoon Character Short">
+            <div class="reel-overlay">
+              <span class="badge badge-orange" style="align-self:flex-start;">3D Short</span>
+              <div>
+                <h3 style="font-size:1.1rem;color:#fff;">Gran Dillama 3D Short</h3>
+                <span style="font-size:0.82rem;color:#CBD5E1;">&#9654; Play Preview</span>
+              </div>
+            </div>
+          </article>
+          <article class="reel-tile" data-reveal="up" data-delay="120" data-showreel-trigger data-title="Volumetric Doorway Lighting" data-img="assets/images/reels/reel_3.jpg" data-desc="Dramatic 3D character lighting, rim haze, and facial expression study.">
+            <img src="assets/images/reels/reel_3.jpg" alt="3D Character Lighting Reel">
+            <div class="reel-overlay">
+              <span class="badge badge-purple" style="align-self:flex-start;">3D Lighting</span>
+              <div>
+                <h3 style="font-size:1.1rem;color:#fff;">Volumetric Doorway Scene</h3>
+                <span style="font-size:0.82rem;color:#CBD5E1;">&#9654; Play Preview</span>
+              </div>
+            </div>
+          </article>
+          <article class="reel-tile" data-reveal="mask" data-delay="180" data-showreel-trigger data-title="Organic 3D Title Card" data-img="assets/images/reels/reel_4.jpg" data-desc="Sculpted 3D typography, subsurface shaders, and title motion reveal.">
+            <img src="assets/images/reels/reel_4.jpg" alt="3D Title Motion Reel">
+            <div class="reel-overlay">
+              <span class="badge badge-orange" style="align-self:flex-start;">3D Motion</span>
+              <div>
+                <h3 style="font-size:1.15rem;color:#fff;">Organic 3D Title Card</h3>
+                <span style="font-size:0.82rem;color:#CBD5E1;">&#9654; Play Preview</span>
+              </div>
+            </div>
+          </article>
+          <article class="reel-tile" data-reveal="up" data-delay="240" data-showreel-trigger data-title="Heroine Costume Turnaround" data-img="assets/images/reels/reel_5.jpg" data-desc="Production character concept art, silhouette, and costume variation sheet.">
+            <img src="assets/images/reels/reel_5.jpg" alt="Character Concept Art Sheet">
+            <div class="reel-overlay">
+              <span class="badge badge-purple" style="align-self:flex-start;">Character Art</span>
+              <div>
+                <h3 style="font-size:1.15rem;color:#fff;">Heroine Costume Sheet</h3>
+                <span style="font-size:0.82rem;color:#CBD5E1;">&#9654; Play Preview</span>
+              </div>
+            </div>
+          </article>
+          <article class="reel-tile" data-reveal="up" data-delay="300" data-showreel-trigger data-title="Woodland Character Acting" data-img="assets/images/reels/reel_6.jpg" data-desc="3D fur grooming, environment grass shaders, and multi-character staging.">
+            <img src="assets/images/reels/reel_6.jpg" alt="3D Fur & Character Animation Reel">
+            <div class="reel-overlay">
+              <span class="badge badge-orange" style="align-self:flex-start;">3D Animation</span>
+              <div>
+                <h3 style="font-size:1.1rem;color:#fff;">Woodland Character Reel</h3>
+                <span style="font-size:0.82rem;color:#CBD5E1;">&#9654; Play Preview</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: WHY CHOOSE OUR ACADEMY -->
+    <section class="section-pad">
+      <div class="container split-editorial">
+        <div data-reveal="right">
+          <div class="glass-card" style="overflow:hidden;padding:0.75rem;">
+            <img src="assets/images/gallery/img_025.jpg" alt="KROMA Academy Studio Training" style="width:100%;height:440px;object-fit:cover;border-radius:var(--radius-md);">
+          </div>
+        </div>
+
+        <div data-reveal="left">
+          <span class="eyebrow">03 / Why Choose KROMA</span>
+          <h2 class="display-lg" style="margin-bottom:1.1rem;">Built Like a Real <span class="text-gradient">Production Studio</span></h2>
+          <p class="lead" style="margin-bottom:1.5rem;">
+            We replace passive lectures with daily critiques, dual-GPU render workstations, and live studio briefs mentored by working VFX and animation leads.
+          </p>
+          <ul style="display:grid;gap:0.75rem;color:var(--text-secondary);">
+            <li>&#10022; <strong>Expert Mentors:</strong> Learn directly from senior animators &amp; compositors.</li>
+            <li>&#10022; <strong>Industry-Standard Tools:</strong> Maya, Blender, Houdini, Nuke, Adobe CC &amp; Unreal.</li>
+            <li>&#10022; <strong>Live Projects &amp; Portfolio:</strong> Graduate with a recruiter-ready demo reel.</li>
+          </ul>
+
+          <div class="stat-pill-grid">
+            <div class="glass-card" style="padding:1.25rem;">
+              <div class="display-md text-gradient" data-counter="14" data-suffix="+">0</div>
+              <div style="font-size:0.86rem;color:var(--text-muted);">Years of Creative Excellence</div>
+            </div>
+            <div class="glass-card" style="padding:1.25rem;">
+              <div class="display-md text-gradient" data-counter="3200" data-suffix="+">0</div>
+              <div style="font-size:0.86rem;color:var(--text-muted);">Graduates Trained (Demo)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: LEARNING EXPERIENCE -->
+    <section class="section-pad section-alt">
+      <div class="container">
+        <div style="text-align:center;max-width:660px;margin:0 auto 3rem;" data-reveal="up">
+          <span class="eyebrow">04 / Learning Experience</span>
+          <h2 class="display-lg">Your 5-Stage <span class="text-gradient">Creative Journey</span></h2>
+        </div>
+
+        <div class="timeline-track">
+          <div class="glass-card timeline-step" data-reveal="up" data-delay="0">
+            <span class="step-num">01 / LEARN</span>
+            <h3 style="font-size:1.15rem;margin-bottom:0.45rem;">Core Foundations</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);">Master anatomy, timing, color theory, and software fundamentals.</p>
+          </div>
+          <div class="glass-card timeline-step" data-reveal="up" data-delay="90">
+            <span class="step-num">02 / PRACTICE</span>
+            <h3 style="font-size:1.15rem;margin-bottom:0.45rem;">Daily Lab Drills</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);">Guided studio sprints on dual-monitor Wacom workstations.</p>
+          </div>
+          <div class="glass-card timeline-step" data-reveal="up" data-delay="180">
+            <span class="step-num">03 / CREATE</span>
+            <h3 style="font-size:1.15rem;margin-bottom:0.45rem;">Live Studio Briefs</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);">Produce original shorts, VFX shots, and interactive UI systems.</p>
+          </div>
+          <div class="glass-card timeline-step" data-reveal="up" data-delay="270">
+            <span class="step-num">04 / REVIEW</span>
+            <h3 style="font-size:1.15rem;margin-bottom:0.45rem;">Dailies &amp; Critique</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);">Frame-by-frame mentor feedback modeled on film studio dailies.</p>
+          </div>
+          <div class="glass-card timeline-step" data-reveal="up" data-delay="360">
+            <span class="step-num">05 / PORTFOLIO</span>
+            <h3 style="font-size:1.15rem;margin-bottom:0.45rem;">Build Your Reel</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);">Polish a standout showreel &amp; prepare for studio interviews.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: STUDENT SUCCESS STORIES -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2.75rem;" data-reveal="up">
+          <div>
+            <span class="eyebrow">05 / Student Success</span>
+            <h2 class="display-lg">Alumni Making <span class="text-gradient">Waves Worldwide</span></h2>
+          </div>
+          <a href="placements.html" class="btn btn-outline">Placement Stories &rarr;</a>
+        </div>
+
+        <div class="stories-grid">
+          <article class="glass-card" style="padding:1.6rem;" data-reveal="scale" data-delay="0">
+            <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem;">
+              <img src="assets/images/gallery/img_109.jpg" alt="Maya Lin" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+              <div>
+                <h3 style="font-size:1.05rem;">Maya Lin</h3>
+                <span style="font-size:0.82rem;color:var(--brand-orange);">Junior 3D Animator · Demo Studio</span>
+              </div>
+            </div>
+            <p style="font-size:0.92rem;color:var(--text-secondary);">"The weekly dailies critique transformed my acting shots. My graduation reel landed three studio interviews within a month."</p>
+          </article>
+
+          <article class="glass-card" style="padding:1.6rem;" data-reveal="scale" data-delay="100">
+            <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem;">
+              <img src="assets/images/gallery/img_110.jpg" alt="Devon Brooks" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+              <div>
+                <h3 style="font-size:1.05rem;">Devon Brooks</h3>
+                <span style="font-size:0.82rem;color:var(--brand-lime);">VFX Compositor · Demo VFX House</span>
+              </div>
+            </div>
+            <p style="font-size:0.92rem;color:var(--text-secondary);">"Learning Nuke deep compositing and Houdini passes on real footage gave me total confidence on my first production."</p>
+          </article>
+
+          <article class="glass-card" style="padding:1.6rem;" data-reveal="scale" data-delay="200">
+            <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem;">
+              <img src="assets/images/gallery/img_111.jpg" alt="Aria Patel" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+              <div>
+                <h3 style="font-size:1.05rem;">Aria Patel</h3>
+                <span style="font-size:0.82rem;color:var(--brand-purple-light);">Motion Designer · Demo Agency</span>
+              </div>
+            </div>
+            <p style="font-size:0.92rem;color:var(--text-secondary);">"KROMA pushed me to blend 3D Cinema 4D renders with bold typography—my Behance portfolio grew from zero to featured."</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: FINAL CTA -->
+    <section class="section-pad" style="padding-top:1rem;">
+      <div class="container">
+        <div class="animated-gradient-bg" data-reveal="up" style="border-radius:var(--radius-xl);padding:clamp(2.5rem,6vw,4.5rem);text-align:center;background-image:linear-gradient(125deg, #4C1D95 0%, #7C3AED 40%, #EA580C 85%, #F97316 100%);color:#FFFFFF;box-shadow:0 28px 70px rgba(124,58,237,0.35);">
+          <span class="eyebrow" style="background:rgba(255,255,255,0.16);color:#FFFFFF;border-color:rgba(255,255,255,0.3);">Next Cohort Starts Soon</span>
+          <h2 class="display-lg" style="color:#FFFFFF;max-width:18ch;margin:0 auto 1rem;">Ready to Launch Your Creative Career?</h2>
+          <p style="color:rgba(255,255,255,0.88);max-width:54ch;margin:0 auto 2rem;font-size:1.05rem;">
+            Book a free studio tour, review your portfolio goals with our admissions mentors, and reserve your workstation.
+          </p>
+          <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;">
+            <a href="signup.html" class="btn btn-lime">Enroll Now</a>
+            <a href="courses.html" class="btn btn-outline" style="color:#FFFFFF;border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.1);">Explore Courses</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script>
+    window.KromaLayout.bootstrapPublicPage('home');
+  </script>
+</body>
+</html>
