@@ -46,6 +46,26 @@
       text-align: center;
       margin-bottom: 1.5rem;
     }
+    .auth-brand-top .brand-logo {
+      transition: transform 0.25s var(--transition-smooth), opacity 0.25s ease;
+    }
+    .auth-brand-top .brand-logo:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    .auth-link {
+      display: inline-block;
+      transition: color 0.22s ease, transform 0.22s ease;
+    }
+    .auth-link:hover {
+      color: var(--brand-orange) !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transform: translateY(-1px);
+    }
+    .auth-link-orange:hover {
+      color: var(--brand-purple-light) !important;
+    }
     .password-wrap {
       position: relative;
     }
@@ -62,10 +82,17 @@
       color: var(--text-muted);
       cursor: pointer;
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 0.25rem;
-      transition: color 0.2s ease;
+      border-radius: 50%;
+      transition: color 0.22s ease, transform 0.22s ease, background 0.22s ease;
     }
-    .eye-btn:hover { color: var(--text-primary); }
+    .eye-btn:hover {
+      color: var(--brand-purple-light);
+      background: rgba(124, 58, 237, 0.12);
+      transform: translateY(-50%) scale(1.12);
+    }
     [dir="rtl"] .password-wrap .form-control { padding-right: 1.05rem; padding-left: 2.85rem; }
     [dir="rtl"] .eye-btn { right: auto; left: 0.75rem; }
     .auth-top-controls {
@@ -121,11 +148,17 @@
       box-shadow: 0 10px 24px rgba(24, 119, 242, 0.3);
       background: rgba(24, 119, 242, 0.14);
     }
+    .social-auth-btn svg {
+      transition: transform 0.3s var(--transition-smooth);
+    }
+    .social-auth-btn:hover svg {
+      transform: scale(1.12);
+    }
     .social-auth-btn.apple:hover {
       transform: translateY(-4px) rotate(5deg);
       border-color: var(--text-primary);
       box-shadow: 0 10px 24px rgba(168, 85, 247, 0.25);
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(124, 58, 237, 0.12);
     }
     @media (max-width: 480px) {
       .auth-card { padding: 1.65rem 1.35rem; }
@@ -178,7 +211,7 @@
             <input type="checkbox" id="rememberMe" style="accent-color:var(--brand-purple);">
             Remember me
           </label>
-          <a href="#" id="forgotPasswordLink" style="color:var(--brand-orange);font-weight:600;">Forgot Password?</a>
+          <a href="#" id="forgotPasswordLink" class="auth-link auth-link-orange" style="color:var(--brand-orange);font-weight:600;">Forgot Password?</a>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%;">Login to Studio</button>
@@ -201,7 +234,7 @@
       </div>
 
       <p style="text-align:center;margin-top:1.35rem;font-size:0.9rem;color:var(--text-secondary);">
-        New to KROMA? <a href="signup.html" style="color:var(--brand-purple-light);font-weight:700;">Create an Account</a>
+        New to KROMA? <a href="signup.html" class="auth-link" style="color:var(--brand-purple-light);font-weight:700;">Create an Account</a>
       </p>
     </section>
   </main>

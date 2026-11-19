@@ -8,6 +8,9 @@
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('kroma-theme') || 'dark');</script>
   <link rel="stylesheet" href="css/styles.css">
   <style>
+    html, body {
+      overflow-x: clip;
+    }
     .dash-shell {
       display: flex;
       min-height: 100dvh;
@@ -20,19 +23,29 @@
       border-right: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
-      padding: 1.5rem 1rem;
-      position: sticky;
+      padding: 1.15rem 1rem;
+      position: fixed;
       top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100vh;
       height: 100dvh;
       overflow-y: auto;
+      overscroll-behavior: contain;
       z-index: 100;
       transition: transform 0.35s var(--transition-smooth);
+    }
+    [dir="rtl"] .dash-sidebar {
+      left: auto;
+      right: 0;
+      border-right: none;
+      border-left: 1px solid var(--border-subtle);
     }
     .dash-nav {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-      margin-top: 1.75rem;
+      gap: 0.25rem;
+      margin-top: 1.15rem;
       flex: 1;
     }
     .dash-nav-btn {
@@ -40,7 +53,7 @@
       align-items: center;
       gap: 0.75rem;
       width: 100%;
-      padding: 0.75rem 0.95rem;
+      padding: 0.65rem 0.95rem;
       border-radius: var(--radius-sm);
       border: none;
       background: transparent;
@@ -51,10 +64,16 @@
       text-align: left;
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
+    [dir="rtl"] .dash-nav-btn {
+      text-align: right;
+    }
     .dash-nav-btn:hover {
       background: var(--bg-soft);
       color: var(--text-primary);
       transform: translateX(3px);
+    }
+    [dir="rtl"] .dash-nav-btn:hover {
+      transform: translateX(-3px);
     }
     .dash-nav-btn.active {
       background: var(--gradient-brand);
@@ -72,8 +91,13 @@
     .dash-main {
       flex: 1;
       min-width: 0;
+      margin-left: 270px;
       display: flex;
       flex-direction: column;
+    }
+    [dir="rtl"] .dash-main {
+      margin-left: 0;
+      margin-right: 270px;
     }
     .dash-topbar {
       min-height: 74px;
@@ -81,13 +105,20 @@
       border-bottom: 1px solid var(--border-subtle);
       background: var(--bg-glass);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 270px;
+      right: 0;
       z-index: 50;
+    }
+    [dir="rtl"] .dash-topbar {
+      left: 0;
+      right: 270px;
     }
     .dash-topbar-left {
       display: flex;
@@ -124,7 +155,7 @@
       border: 1px solid var(--border-subtle);
     }
     .dash-content {
-      padding: 1.75rem;
+      padding: calc(74px + 1.75rem) 1.75rem 1.75rem;
       flex: 1;
     }
     .dash-grid-4 {
@@ -162,11 +193,14 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      padding: 0.25rem 0.65rem;
+      justify-content: center;
+      padding: 0.3rem 0.75rem;
       border-radius: 999px;
       font-size: 0.76rem;
       font-weight: 600;
       font-family: var(--font-mono);
+      white-space: nowrap;
+      line-height: 1.25;
     }
     .badge-purple { background: rgba(124, 58, 237, 0.18); color: var(--brand-purple-light); }
     .badge-orange { background: rgba(249, 115, 22, 0.18); color: var(--brand-orange); }
@@ -178,11 +212,12 @@
     .dash-table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 620px;
+      min-width: 680px;
     }
     .dash-table th, .dash-table td {
       padding: 0.9rem 1rem;
       text-align: left;
+      vertical-align: middle;
       border-bottom: 1px solid var(--border-subtle);
       font-size: 0.9rem;
     }
@@ -191,6 +226,7 @@
       font-size: 0.78rem;
       text-transform: uppercase;
       color: var(--text-muted);
+      white-space: nowrap;
     }
     .dash-backdrop {
       display: none;
@@ -212,7 +248,23 @@
         top: 0;
         transform: translateX(-100%);
       }
-      .dash-sidebar.open { transform: translateX(0); }
+      [dir="rtl"] .dash-sidebar {
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
+      }
+      .dash-sidebar.open,
+      [dir="rtl"] .dash-sidebar.open { transform: translateX(0); }
+      .dash-main,
+      [dir="rtl"] .dash-main {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .dash-topbar,
+      [dir="rtl"] .dash-topbar {
+        left: 0;
+        right: 0;
+      }
       .dash-hamburger { display: inline-flex; }
     }
     @media (max-width: 960px) {
@@ -220,7 +272,7 @@
     }
     @media (max-width: 600px) {
       .dash-grid-4, .dash-grid-3 { grid-template-columns: 1fr; }
-      .dash-content { padding: 1.15rem; }
+      .dash-content { padding: calc(64px + 1.15rem) 1.15rem 1.15rem; }
       .dash-topbar {
         min-height: 64px;
         padding: 0.55rem 0.9rem;

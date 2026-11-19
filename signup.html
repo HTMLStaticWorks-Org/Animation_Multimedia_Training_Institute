@@ -46,6 +46,23 @@
       text-align: center;
       margin-bottom: 1.15rem;
     }
+    .auth-brand-top .brand-logo {
+      transition: transform 0.25s var(--transition-smooth), opacity 0.25s ease;
+    }
+    .auth-brand-top .brand-logo:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    .auth-link {
+      display: inline-block;
+      transition: color 0.22s ease, transform 0.22s ease;
+    }
+    .auth-link:hover {
+      color: var(--brand-orange) !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transform: translateY(-1px);
+    }
     .signup-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -64,9 +81,17 @@
       color: var(--text-muted);
       cursor: pointer;
       display: inline-flex;
-      padding: 0.2rem;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: color 0.22s ease, transform 0.22s ease, background 0.22s ease;
     }
-    .eye-btn:hover { color: var(--text-primary); }
+    .eye-btn:hover {
+      color: var(--brand-purple-light);
+      background: rgba(124, 58, 237, 0.12);
+      transform: translateY(-50%) scale(1.12);
+    }
     [dir="rtl"] .password-wrap .form-control { padding-right: 1.05rem; padding-left: 2.7rem; }
     [dir="rtl"] .eye-btn { right: auto; left: 0.7rem; }
     .auth-top-controls {
@@ -112,7 +137,9 @@
     }
     .social-auth-btn.google:hover { transform: translateY(-4px) rotate(-5deg); border-color: #EA4335; box-shadow: 0 10px 24px rgba(234,67,53,0.28); background: rgba(234,67,53,0.12); }
     .social-auth-btn.facebook:hover { transform: translateY(-4px) scale(1.08); border-color: #1877F2; box-shadow: 0 10px 24px rgba(24,119,242,0.3); background: rgba(24,119,242,0.14); }
-    .social-auth-btn.apple:hover { transform: translateY(-4px) rotate(5deg); border-color: var(--text-primary); box-shadow: 0 10px 24px rgba(168,85,247,0.25); background: rgba(255,255,255,0.12); }
+    .social-auth-btn svg { transition: transform 0.3s var(--transition-smooth); }
+    .social-auth-btn:hover svg { transform: scale(1.12); }
+    .social-auth-btn.apple:hover { transform: translateY(-4px) rotate(5deg); border-color: var(--text-primary); box-shadow: 0 10px 24px rgba(168,85,247,0.25); background: rgba(124,58,237,0.12); }
     @media (max-width: 560px) {
       .auth-card { padding: 1.45rem 1.2rem; }
     }
@@ -213,7 +240,7 @@
       </div>
 
       <p style="text-align:center;margin-top:1rem;font-size:0.88rem;color:var(--text-secondary);">
-        Already Have an Account? <a href="login.html" style="color:var(--brand-purple-light);font-weight:700;">Login</a>
+        Already Have an Account? <a href="login.html" class="auth-link" style="color:var(--brand-purple-light);font-weight:700;">Login</a>
       </p>
     </section>
   </main>

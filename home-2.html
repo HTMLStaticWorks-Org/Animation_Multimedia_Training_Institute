@@ -48,18 +48,20 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.15rem;
-      align-items: center;
+      align-items: stretch;
     }
     .studio-collage-item {
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--border-subtle);
+      aspect-ratio: 4 / 3;
     }
     .studio-collage-item img {
       width: 100%;
-      aspect-ratio: 4 / 3;
-      height: auto;
+      height: 100%;
       object-fit: cover;
+      object-position: center;
+      display: block;
       transition: transform 0.6s var(--transition-smooth);
     }
     .studio-collage-item:hover img { transform: scale(1.07); }
@@ -138,6 +140,7 @@
     }
     @media (max-width: 640px) {
       .horiz-scroll-track, .studio-collage, .projects-gallery, .tools-grid { grid-template-columns: 1fr; }
+      .h2-split-hero .btn { min-width: 190px; }
     }
   </style>
 </head>
@@ -237,10 +240,10 @@
             <img src="assets/images/gallery/img_086.jpg" alt="Color Grading & Editing Suite">
           </div>
           <div class="studio-collage-item" data-reveal="mask" data-delay="200">
-            <img src="assets/images/gallery/img_087.jpg" alt="Collaborative Design Studio">
+            <img src="assets/images/gallery/img_083.jpg" alt="Studio Camera & Production Set">
           </div>
           <div class="studio-collage-item" data-reveal="mask" data-delay="300">
-            <img src="assets/images/gallery/img_088.jpg" alt="Multimedia Critique Room">
+            <img src="assets/images/gallery/img_089.jpg" alt="Collaborative Storyboard & Critique Table">
           </div>
         </div>
       </div>

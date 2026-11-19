@@ -56,6 +56,16 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
       z-index: 3;
     }
+    .floating-chip-top {
+      top: -18px;
+      left: -18px;
+    }
+    .floating-chip-bottom {
+      bottom: -16px;
+      right: -10px;
+      border-color: rgba(249, 115, 22, 0.55);
+      color: #F97316;
+    }
     .showreel-card {
       position: relative;
       border-radius: var(--radius-xl);
@@ -144,12 +154,42 @@
     .reel-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 35%, rgba(9, 11, 20, 0.9) 100%);
+      background: linear-gradient(180deg, rgba(9, 11, 20, 0.5) 0%, rgba(9, 11, 20, 0.12) 40%, rgba(9, 11, 20, 0.94) 100%);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 1.25rem;
       color: #FFFFFF;
+    }
+    .reel-overlay .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.32rem 0.78rem;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #FFFFFF;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+    .reel-overlay .badge-purple {
+      background: rgba(109, 40, 217, 0.92);
+      border: 1px solid rgba(221, 214, 254, 0.35);
+    }
+    .reel-overlay .badge-orange {
+      background: rgba(234, 88, 12, 0.92);
+      border: 1px solid rgba(254, 215, 170, 0.35);
+    }
+    .reel-overlay h3 {
+      color: #FFFFFF;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
+    }
+    .reel-overlay div span {
+      color: #F1F5F9 !important;
+      font-weight: 500;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
     }
 
     /* Section 4: Split Editorial */
@@ -209,7 +249,10 @@
     @media (max-width: 640px) {
       .programs-bento, .timeline-track, .masonry-grid, .stories-grid, .stat-pill-grid { grid-template-columns: 1fr; }
       .prog-card, .reel-tile { height: 250px; }
-      .floating-chip { display: none; }
+      .floating-chip { padding: 0.45rem 0.85rem; font-size: 0.72rem; }
+      .floating-chip-top { top: -14px; left: 8px; }
+      .floating-chip-bottom { bottom: -14px; right: 8px; }
+      .h1-hero .btn { min-width: 185px; }
     }
   </style>
 </head>
@@ -240,8 +283,8 @@
         </div>
 
         <div style="position:relative;" data-reveal="scale" data-delay="150">
-          <div class="floating-chip float-slow" style="top:-18px;left:-18px;">Maya · Blender · Nuke</div>
-          <div class="floating-chip float-delayed" style="bottom:-16px;right:-10px;border-color:rgba(249,115,22,0.55);color:#F97316;">2026 Admissions Open</div>
+          <div class="floating-chip floating-chip-top float-slow">Maya · Blender · Nuke</div>
+          <div class="floating-chip floating-chip-bottom float-delayed">2026 Admissions Open</div>
           <div class="showreel-card" data-showreel-trigger data-title="2026 Academy Showreel Preview" data-img="assets/images/showreel-hero.jpg" data-desc="Watch how KROMA students take concepts from storyboard to final Octane &amp; Unreal Engine renders.">
             <img src="assets/images/showreel-hero.jpg" alt="Showreel video preview">
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(9,11,20,0.35);">
@@ -503,7 +546,7 @@
         <div class="stories-grid">
           <article class="glass-card" style="padding:1.6rem;" data-reveal="scale" data-delay="0">
             <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem;">
-              <img src="assets/images/gallery/img_109.jpg" alt="Maya Lin" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+              <img src="assets/images/gallery/img_106.jpg" alt="Maya Lin" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 18%;flex-shrink:0;border:2px solid var(--border-strong);">
               <div>
                 <h3 style="font-size:1.05rem;">Maya Lin</h3>
                 <span style="font-size:0.82rem;color:var(--brand-orange);">Junior 3D Animator · Demo Studio</span>
@@ -514,7 +557,7 @@
 
           <article class="glass-card" style="padding:1.6rem;" data-reveal="scale" data-delay="100">
             <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem;">
-              <img src="assets/images/gallery/img_110.jpg" alt="Devon Brooks" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+              <img src="assets/images/placements-tariq.jpg" alt="Devon Brooks" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 20%;flex-shrink:0;border:2px solid var(--border-strong);">
               <div>
                 <h3 style="font-size:1.05rem;">Devon Brooks</h3>
                 <span style="font-size:0.82rem;color:var(--brand-lime);">VFX Compositor · Demo VFX House</span>
@@ -525,7 +568,7 @@
 
           <article class="glass-card" style="padding:1.6rem;" data-reveal="scale" data-delay="200">
             <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem;">
-              <img src="assets/images/gallery/img_111.jpg" alt="Aria Patel" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+              <img src="assets/images/gallery/img_116.jpg" alt="Aria Patel" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 18%;flex-shrink:0;border:2px solid var(--border-strong);">
               <div>
                 <h3 style="font-size:1.05rem;">Aria Patel</h3>
                 <span style="font-size:0.82rem;color:var(--brand-purple-light);">Motion Designer · Demo Agency</span>

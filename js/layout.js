@@ -358,21 +358,21 @@ function initShowreelModal() {
   modal.className = 'modal-backdrop';
   modal.innerHTML = `
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="showreelTitle">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-bottom:1px solid var(--border-subtle);">
+      <div class="modal-header" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.4rem;border-bottom:1px solid var(--border-subtle);">
         <div>
           <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--brand-orange);text-transform:uppercase;">KROMA Studio Preview</span>
           <h3 id="showreelTitle" style="font-size:1.15rem;margin-top:0.15rem;">Student Showreel 2026</h3>
         </div>
-        <button type="button" id="closeShowreelBtn" class="theme-toggle" aria-label="Close Preview">&times;</button>
+        <button type="button" id="closeShowreelBtn" class="theme-toggle" style="flex-shrink:0;" aria-label="Close Preview">&times;</button>
       </div>
-      <div style="padding:1.5rem;">
-        <div style="position:relative;aspect-ratio:16/9;border-radius:var(--radius-md);overflow:hidden;background:#090B14;border:1px solid var(--border-strong);">
-          <img id="showreelPreviewImg" src="" alt="Showreel frame" style="width:100%;height:100%;object-fit:cover;opacity:0.85;">
-          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(to top, rgba(9,11,20,0.88), rgba(9,11,20,0.25));padding:1.5rem;text-align:center;">
-            <span style="display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 1rem;border-radius:999px;background:rgba(124,58,237,0.85);color:#fff;font-size:0.82rem;font-weight:600;margin-bottom:0.75rem;">
+      <div class="modal-body" style="padding:1.25rem 1.4rem;">
+        <div class="modal-preview-frame" style="position:relative;min-height:210px;aspect-ratio:16/9;border-radius:var(--radius-md);overflow:hidden;background:#090B14;border:1px solid var(--border-strong);display:flex;align-items:stretch;">
+          <img id="showreelPreviewImg" src="" alt="Showreel frame" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;">
+          <div class="modal-preview-overlay" style="position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(to top, rgba(9,11,20,0.9), rgba(9,11,20,0.35));padding:1.25rem;text-align:center;">
+            <span class="modal-preview-badge" style="display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;padding:0.42rem 0.95rem;border-radius:999px;background:rgba(124,58,237,0.88);color:#fff;font-size:0.78rem;font-weight:600;line-height:1.35;margin-bottom:0.75rem;max-width:100%;">
               4K Render · 60 FPS · Blender / Maya / Nuke
             </span>
-            <p id="showreelDesc" style="color:#E2E8F0;max-width:52ch;font-size:0.95rem;"></p>
+            <p id="showreelDesc" style="color:#E2E8F0;max-width:52ch;font-size:0.92rem;line-height:1.55;margin:0;"></p>
           </div>
         </div>
       </div>
